@@ -48,6 +48,7 @@ The following **optional** features are implemented:
 ### Firebase CodeLabs :-
 * [Codelab Android](https://codelabs.developers.google.com/codelabs/firebase-android/index.html?index=..%2F..%2Findex#0)
 * [Codelab iOS](https://codelabs.developers.google.com/codelabs/firebase-ios-swift/index.html?index=..%2F..%2Findex#7)
+* [RayWenderlich realtime chat app](https://www.raywenderlich.com/140836/firebase-tutorial-real-time-chat-2)
 
 ### AutoReply Resources and Links
 * http://www.masswerk.at/elizabot/
