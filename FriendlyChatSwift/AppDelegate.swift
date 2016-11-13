@@ -17,16 +17,64 @@
 import UIKit
 
 import Firebase
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
       launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FIRApp.configure()
+    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+    GIDSignIn.sharedInstance().delegate = self
     return true
   }
-
+   
+    @available(iOS 9.0, *)
+    func application(application: UIApplication,
+                     openURL url: URL, options: [String: AnyObject]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url as URL!,
+                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication.rawValue] as? String,
+                                                 annotation: options[UIApplicationOpenURLOptionsKey.annotation.rawValue])
+    }
+ 
+    /*
+    func application(application: UIApplication,
+                     openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url as URL!,
+                                                    sourceApplication: sourceApplication,
+                                                    annotation: annotation)
+    }
+     */
+    
+    public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Sign in failed....1!!")
+            print(error.localizedDescription)
+            return
+        }
+        
+        print("Successfully signed in Google....")
+        // TODO : Use this google use object to sign in with Firebase
+        let authentication = user.authentication
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                          accessToken: (authentication?.accessToken)!)
+        //FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user: FIRUser?, error: Error?) in
+            if error != nil {
+                print(error?.localizedDescription)
+            }
+            
+            print("Successfully signed in Firebase....")
+        })
+    }
+    
+    
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+                withError error: NSError!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
 }
