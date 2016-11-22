@@ -19,10 +19,12 @@ import UIKit
 import Firebase
 
 @objc(SignInViewController)
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, GIDSignInUIDelegate {
 
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var googleSigninButton: GIDSignInButton!
+
 
   override func viewDidAppear(_ animated: Bool) {
     if let user = FIRAuth.auth()?.currentUser {
@@ -30,6 +32,10 @@ class SignInViewController: UIViewController {
     }
   }
 
+    override func viewDidLoad() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
   @IBAction func didTapSignIn(_ sender: AnyObject) {
     // Sign In with credentials.
     guard let email = emailField.text, let password = passwordField.text else { return }
@@ -88,7 +94,7 @@ class SignInViewController: UIViewController {
     present(prompt, animated: true, completion: nil);
   }
 
-  func signedIn(_ user: FIRUser?) {
+  public func signedIn(_ user: FIRUser?) {
     MeasurementHelper.sendLoginEvent()
     
     AppState.sharedInstance.displayName = user?.displayName ?? user?.email

@@ -187,6 +187,8 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
   }
 
   @IBAction func signOut(_ sender: UIButton) {
+    try! FIRAuth.auth()?.signOut()
+    GIDSignIn.sharedInstance().signOut()
     AppState.sharedInstance.signedIn = false
     dismiss(animated: true, completion: nil)
   }
