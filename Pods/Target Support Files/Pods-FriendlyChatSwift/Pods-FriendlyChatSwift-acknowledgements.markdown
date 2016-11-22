@@ -41,6 +41,14 @@ Copyright 2016 Google
 
 Copyright 2011 Google Inc. All Rights Reserved.
 
+## GoogleAppUtilities
+
+Copyright 2016 Google
+
+## GoogleAuthUtilities
+
+Copyright 2016 Google
+
 ## GoogleIPhoneUtilities
 
 Copyright 2015 Google Inc.
@@ -52,6 +60,10 @@ Copyright 2016 Google
 ## GoogleNetworkingUtilities
 
 Copyright 2016 Google
+
+## GoogleSignIn
+
+Copyright 2015 Google Inc. All Rights Reserved.
 
 ## GoogleSymbolUtilities
 

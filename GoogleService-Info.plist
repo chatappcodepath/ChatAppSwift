@@ -7,36 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>369033820816-d3tk0alvg76vtrqk36ifkl0aqldmpff5.apps.googleusercontent.com</string>
+	<string>990072877637-f8kdn4ororjahk17tip0g65mammip274.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.369033820816-d3tk0alvg76vtrqk36ifkl0aqldmpff5</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>369033820816-svl6tb6m3o8o6f84oc89493oddgtuhaq.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.990072877637-f8kdn4ororjahk17tip0g65mammip274</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAkDWuqFZUO_muYA1yP12kPx2oSLJovYDQ</string>
+	<string>AIzaSyBOWoqQ1-lca66PoopqLNCo0jn8iUzodjg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>369033820816</string>
+	<string>990072877637</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.google.firebase.codelab.FriendlyChatSwift</string>
 	<key>PROJECT_ID</key>
-	<string>friendlychat-94a0c</string>
+	<string>friendlychat-28062</string>
 	<key>STORAGE_BUCKET</key>
-	<string>friendlychat-94a0c.appspot.com</string>
+	<string>friendlychat-28062.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:369033820816:ios:1f8bd1d7b652f2c5</string>
+	<string>1:990072877637:ios:1f8bd1d7b652f2c5</string>
 	<key>DATABASE_URL</key>
-	<string>https://friendlychat-94a0c.firebaseio.com</string>
+	<string>https://friendlychat-28062.firebaseio.com</string>
 </dict>
 </plist>
