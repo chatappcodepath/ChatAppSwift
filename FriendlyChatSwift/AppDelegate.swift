@@ -28,8 +28,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     FIRApp.configure()
     GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
+    window = UIWindow.init(frame: UIScreen.main.bounds)
+    let rootVC = LoginViewController()
+    
+    if let currentUser = GIDSignIn.sharedInstance().currentUser {
+        signInWithCurrentUser(user: currentUser)
+    } else {
+        window?.rootViewController = rootVC;
+        window?.makeKeyAndVisible()
+    }
     return true
   }
+    
+    func signInWithCurrentUser(user: GIDGoogleUser) {
+        let authentication = user.authentication
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                          accessToken: (authentication?.accessToken)!)
+        
+        FIRAuth.auth()?.signIn(with: credential){ [weak self] (user, err) in
+            guard let strongSelf = self else { return }
+            
+            let groupsVC = UserGroupsViewController()
+            let nvc = UINavigationController()
+            nvc.navigationBar.isTranslucent = false
+            nvc.addChildViewController(groupsVC)
+            
+            strongSelf.window?.rootViewController = nvc;
+            
+            if let userName = user?.email {
+                print("Signed in with user " + userName);
+            }
+        }
+    }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
@@ -37,22 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("Error in Google Signin " + error.localizedDescription);
             return
         }
-        
-        let authentication = user.authentication
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
-                                                          accessToken: (authentication?.accessToken)!)
-        
-        FIRAuth.auth()?.signIn(with: credential){ (user, err) in
-            // user signedIn
-            if let vc = self.window?.rootViewController as? SignInViewController {
-                vc.signedIn(user);
-            }
-            
-            if let userName = user?.email {
-                print("Signed in with user " + userName);
-            }
-        }
-
+        signInWithCurrentUser(user: user)
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
