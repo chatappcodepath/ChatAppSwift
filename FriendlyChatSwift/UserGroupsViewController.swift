@@ -32,6 +32,7 @@ class UserGroupsViewController: UIViewController {
     func bindTableView() {
         self.groupsTable.dataSource = self;
         self.groupsTable.delegate = self;
+        self.groupsTable.register(UINib(nibName: "GroupsTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: GroupsTableViewCell.reuseID)
         FirebaseUtils.sharedInstance.groupsForCurrentUser {[weak self] (groups) in
             guard let strongSelf = self else {return}
             strongSelf.groups = groups
@@ -56,9 +57,9 @@ extension UserGroupsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // return tableViewCell
-        let group = groups[indexPath.row]
-        print("get group for \(group.title)")
-        return UITableViewCell();
+        let cell = self.groupsTable.dequeueReusableCell(withIdentifier: GroupsTableViewCell.reuseID) as! GroupsTableViewCell
+        cell.group = groups[indexPath.row]
+        return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -68,6 +69,9 @@ extension UserGroupsViewController: UITableViewDataSource {
 
 extension UserGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedGroup = groups[indexPath.row];
+        print("TODO : move to the messagesViewController with group \(selectedGroup.title)");
+        tableView.deselectRow(at: indexPath, animated: true)
         // Touched row at indexpath
     }
 }

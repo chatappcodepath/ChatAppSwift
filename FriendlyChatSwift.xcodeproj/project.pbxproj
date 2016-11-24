@@ -21,6 +21,8 @@
 		4CDBF0FF1DE56A3B0010D251 /* UserGroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF0FD1DE56A3B0010D251 /* UserGroupsViewController.xib */; };
 		4CDBF1021DE5EB480010D251 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1011DE5EB480010D251 /* Group.swift */; };
 		4CDBF1051DE5F19C0010D251 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1041DE5F19C0010D251 /* FirebaseUtils.swift */; };
+		4CDBF1091DE731410010D251 /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */; };
+		4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* FCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* FCViewController.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		4CDBF0FD1DE56A3B0010D251 /* UserGroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserGroupsViewController.xib; sourceTree = "<group>"; };
 		4CDBF1011DE5EB480010D251 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		4CDBF1041DE5F19C0010D251 /* FirebaseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupsTableViewCell.swift; path = Views/GroupsTableViewCell.swift; sourceTree = "<group>"; };
+		4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GroupsTableViewCell.xib; path = Views/GroupsTableViewCell.xib; sourceTree = "<group>"; };
 		50C95780A039D54601D8587F /* Pods-FriendlyChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-FriendlyChatSwift/Pods-FriendlyChatSwift.release.xcconfig"; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* FriendlyChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,15 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		4CDBF1061DE730F60010D251 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */,
+				4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		5F5A53431ADE670C00F81DF0 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +129,7 @@
 				4CDBF1031DE5F1490010D251 /* Utils */,
 				4CDBF1001DE5EB2A0010D251 /* Models */,
 				4CDBF0FB1DE55CEB0010D251 /* ViewControllers */,
+				4CDBF1061DE730F60010D251 /* Views */,
 				5F5A537F1ADE67D500F81DF0 /* FCViewController.swift */,
 				2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */,
 				2C8E6C2A1B16875B0073CE3D /* SignInViewController.swift */,
@@ -223,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */,
+				4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */,
 				107960731C612531003DB6CC /* Main.storyboard in Resources */,
 				10D602891D5A2F9F004530C6 /* shared in Resources */,
 				4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */,
@@ -292,6 +307,7 @@
 				5F5A53801ADE67D500F81DF0 /* FCViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				4CDBF1051DE5F19C0010D251 /* FirebaseUtils.swift in Sources */,
+				4CDBF1091DE731410010D251 /* GroupsTableViewCell.swift in Sources */,
 				2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				4CDBF0FE1DE56A3B0010D251 /* UserGroupsViewController.swift in Sources */,
