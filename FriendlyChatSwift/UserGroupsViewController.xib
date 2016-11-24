@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserGroupsViewController" customModule="FriendlyChatSwift" customModuleProvider="target">
             <connections>
+                <outlet property="groupsTable" destination="3Um-JM-Z4F" id="Mxh-91-dPj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,7 +43,7 @@
                 <constraint firstAttribute="bottom" secondItem="3Um-JM-Z4F" secondAttribute="bottom" id="WCB-rq-8Ge"/>
                 <constraint firstItem="zG9-QI-iYf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yK6-Is-0KC"/>
             </constraints>
-            <point key="canvasLocation" x="-143" y="47"/>
+            <point key="canvasLocation" x="-300" y="47"/>
         </view>
     </objects>
 </document>

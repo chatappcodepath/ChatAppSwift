@@ -65,7 +65,7 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
 
   func configureDatabase() {
     ref = FIRDatabase.database().reference()
-    // Listen for new messages in the Firebase database
+    // Listen for new messages in the Firebase databases
     _refHandle = self.ref.child("messages").observe(.childAdded, with: { [weak self] (snapshot) -> Void in
         guard let strongSelf = self else { return }
         strongSelf.messages.append(snapshot)
