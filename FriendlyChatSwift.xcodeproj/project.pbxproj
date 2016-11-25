@@ -15,6 +15,7 @@
 		2CA807BE1B217B21009AD7F2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA807BD1B217B21009AD7F2 /* AppState.swift */; };
 		3B2C797F9F79EAA1803ED47A /* Pods_FriendlyChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A8152DE7FC811CF1CC60AC /* Pods_FriendlyChatSwift.framework */; };
 		4C547F3B1DE758A100A434CB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C547F3A1DE758A100A434CB /* Message.swift */; };
+		4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72D53B1DE8D68300B9F685 /* PushNotification.swift */; };
 		4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF0F01DE41BF70010D251 /* GoogleService-Info.plist */; };
 		4CDBF0F91DE55CDF0010D251 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF0F71DE55CDF0010D251 /* LoginViewController.swift */; };
 		4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF0F81DE55CDF0010D251 /* LoginViewController.xib */; };
@@ -39,6 +40,7 @@
 		2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
 		2CA807BD1B217B21009AD7F2 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		4C547F3A1DE758A100A434CB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
+		4C72D53B1DE8D68300B9F685 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushNotification.swift; path = Models/PushNotification.swift; sourceTree = "<group>"; };
 		4CDBF0F01DE41BF70010D251 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CDBF0F21DE41F1F0010D251 /* FriendlyChatSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FriendlyChatSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		4CDBF0F71DE55CDF0010D251 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				4CDBF1011DE5EB480010D251 /* Group.swift */,
 				4C547F3A1DE758A100A434CB /* Message.swift */,
+				4C72D53B1DE8D68300B9F685 /* PushNotification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */,
 				4CDBF1021DE5EB480010D251 /* Group.swift in Sources */,
 				4CDBF0F91DE55CDF0010D251 /* LoginViewController.swift in Sources */,
 				2C8E6C2B1B16875B0073CE3D /* SignInViewController.swift in Sources */,

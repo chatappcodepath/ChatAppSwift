@@ -28,9 +28,19 @@ class Message: NSObject {
     var payLoad : String?
     var photoUrl : String?
     var sid : String?
-    var ts: Double?
+    var ts: TimeInterval?
+    var tsMilliSec: UInt? {
+        get {
+            return UInt(ts! * 1000)
+        }
+        set(newTsMilliSec) {
+            ts = TimeInterval(Float(newTsMilliSec!/1000))
+        }
+    }
+    
 
     public init(snapshot: FIRDataSnapshot) {
+        super.init()
         let messageDictionary = snapshot.value as! Dictionary<String, AnyObject>
         isBotMessage = messageDictionary["isBotMessage"] as? Bool
         msgType = messageDictionary["msgType"] as? String
@@ -38,7 +48,7 @@ class Message: NSObject {
         payLoad = messageDictionary["payLoad"] as? String
         photoUrl = messageDictionary["photoUrl"] as? String
         sid = messageDictionary["sid"] as? String
-        ts = messageDictionary["ts"] as? Double
+        tsMilliSec = messageDictionary["ts"] as? UInt
     }
     
     override init() {
@@ -53,7 +63,7 @@ class Message: NSObject {
         messageDictionary["payLoad"] = payLoad
         messageDictionary["photoUrl"] = photoUrl
         messageDictionary["sid"] = sid
-        messageDictionary["ts"] = ts
+        messageDictionary["ts"] = tsMilliSec
         
         return messageDictionary;
     }

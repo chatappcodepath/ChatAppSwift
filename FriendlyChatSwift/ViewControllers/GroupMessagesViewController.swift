@@ -13,27 +13,33 @@ class GroupMessagesViewController: JSQMessagesViewController {
     var batchMessages = true
     var ref: FIRDatabaseReference!
     var sender: FIRUser!
+    fileprivate var _refHandle: FIRDatabaseHandle!
     public var group: Group!
     
     
     // *** STEP 1: STORE FIREBASE REFERENCES
     var messagesRef: FIRDatabaseReference!
     
+    deinit {
+        messagesRef.removeObserver(withHandle: _refHandle)
+    }
+    
     func setupFirebase() {
         // *** STEP 2: SETUP FIREBASE
         messagesRef = FirebaseUtils.sharedInstance.groupMessageRefForGroup(group: group)
         
         // *** STEP 4: RECEIVE MESSAGES FROM FIREBASE (limited to latest 25 messages)
-        messagesRef.queryLimited(toFirst: 25).observe(.childAdded , with: { (snapshot) in
-            self.messages.append(Message(snapshot: snapshot))
-            self.finishReceivingMessage()
+        _refHandle = messagesRef.queryOrdered(byChild: "ts").queryLimited(toLast: 25).observe(.childAdded , with: { [weak self] (snapshot) in
+            guard let strongSelf = self else {return}
+            
+            strongSelf.messages.append(Message(snapshot: snapshot))
+            strongSelf.finishReceivingMessage()
         });
     }
     
     func sendMessage(text: String!) {
         // *** STEP 3: ADD A MESSAGE TO FIREBASE
-        messagesRef.childByAutoId()
-        messagesRef.childByAutoId().setValue(Message.newTextMessageWith(content: text).messageDictionary)
+        FirebaseUtils.sharedInstance.sendMessage(in: group, messageToSend: Message.newTextMessageWith(content: text))
     }
     
     func setupAvatarImage(name: String, imageUrl: String?, incoming: Bool) {
@@ -161,8 +167,6 @@ class GroupMessagesViewController: JSQMessagesViewController {
         let attributes : [String:Any] = [NSForegroundColorAttributeName:cell.textView.textColor!, NSUnderlineStyleAttributeName: 1]
         cell.textView.linkTextAttributes = attributes
         
-        //        cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: cell.textView.textColor,
-        //            NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle]
         return cell
     }
     

@@ -36,7 +36,7 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
   @IBOutlet weak var sendButton: UIButton!
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
-  var msglength: NSNumber = 10
+  var msglength: NSNumber = 100
   fileprivate var _refHandle: FIRDatabaseHandle!
 
   var storageRef: FIRStorageReference!

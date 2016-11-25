@@ -16,6 +16,7 @@ class FirebaseUtils: NSObject {
         GROUPS_FOR_USER = "groupsForUser",
         MESSAGES_FOR_GROUP = "messagesForGroup",
         PUSHTOKEN = "pushTokens",
+        NOTIFICATION_REQUEST_NODE = "notificationRequests",
         USERS = "users"
     }
     
@@ -56,6 +57,17 @@ class FirebaseUtils: NSObject {
     public func groupMessageRefForGroup(group: Group) -> FIRDatabaseReference {
         let ref = FIRDatabase.database().reference()
         return ref.child(DBPaths.MESSAGES_FOR_GROUP.rawValue).child(group.id!)
+    }
+
+    public func sendMessage(in group: Group, messageToSend: Message) -> Void {
+        let ref = FIRDatabase.database().reference()
+        let messageRef = groupMessageRefForGroup(group: group)
+        let groupReference = ref.child(DBPaths.GROUPS.rawValue).child(group.id!)
+        let notificationReference = ref.child(DBPaths.NOTIFICATION_REQUEST_NODE.rawValue)
+        messageRef.childByAutoId().setValue(messageToSend.messageDictionary)
+        groupReference.child("lmSnippet").setValue(messageToSend.payLoad);
+        groupReference.child("ts").setValue(messageToSend.tsMilliSec);
+        notificationReference.childByAutoId().setValue(PushNotification.newPushNotificationFrom(message: messageToSend, group: group).pushNotifDictionary)
     }
 }
 
