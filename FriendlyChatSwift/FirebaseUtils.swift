@@ -24,9 +24,6 @@ class FirebaseUtils: NSObject {
     var authUser: FIRUser? {
         return FIRAuth.auth()?.currentUser
     }
-    var signedIn = false
-    var displayName: String?
-    var photoURL: URL?
     
     public func groupsForCurrentUser(completion:@escaping (([Group]) -> Void)) {
         
@@ -54,6 +51,11 @@ class FirebaseUtils: NSObject {
                 }
             }
         })
+    }
+    
+    public func groupMessageRefForGroup(group: Group) -> FIRDatabaseReference {
+        let ref = FIRDatabase.database().reference()
+        return ref.child(DBPaths.MESSAGES_FOR_GROUP.rawValue).child(group.id!)
     }
 }
 

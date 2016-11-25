@@ -49,9 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             guard let strongSelf = self else { return }
             
             let groupsVC = UserGroupsViewController()
-            let nvc = UINavigationController()
+            let nvc = UINavigationController(rootViewController: groupsVC)
             nvc.navigationBar.isTranslucent = false
-            nvc.addChildViewController(groupsVC)
             
             strongSelf.window?.rootViewController = nvc;
             

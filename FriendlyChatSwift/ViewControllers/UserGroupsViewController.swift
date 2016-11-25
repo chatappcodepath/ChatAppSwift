@@ -41,7 +41,8 @@ class UserGroupsViewController: UIViewController {
     }
     
     func populateNavBar() {
-        self.navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutCurrentUser))
+        self.title = "Hello \(FirebaseUtils.sharedInstance.authUser?.displayName ?? "user")"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutCurrentUser))
     }
     
     func signOutCurrentUser() {
@@ -69,9 +70,11 @@ extension UserGroupsViewController: UITableViewDataSource {
 
 extension UserGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedGroup = groups[indexPath.row];
-        print("TODO : move to the messagesViewController with group \(selectedGroup.title)");
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedGroup = groups[indexPath.row];
+        let groupMessagesVC = GroupMessagesViewController()
+        groupMessagesVC.group = selectedGroup
+        navigationController?.pushViewController(groupMessagesVC, animated: true)
         // Touched row at indexpath
     }
 }
