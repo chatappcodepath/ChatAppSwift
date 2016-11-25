@@ -9,6 +9,8 @@ pod 'Firebase/Auth'
 pod 'Firebase/Crash'
 pod 'Firebase/Database'
 pod 'Firebase/RemoteConfig'
+pod 'GoogleSignIn'
+pod 'JSQMessagesViewController'
 
 target 'FriendlyChatSwift' do
 end

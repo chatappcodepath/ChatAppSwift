@@ -36,7 +36,7 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
   @IBOutlet weak var sendButton: UIButton!
   var ref: FIRDatabaseReference!
   var messages: [FIRDataSnapshot]! = []
-  var msglength: NSNumber = 10
+  var msglength: NSNumber = 100
   fileprivate var _refHandle: FIRDatabaseHandle!
 
   var storageRef: FIRStorageReference!
@@ -65,7 +65,7 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
 
   func configureDatabase() {
     ref = FIRDatabase.database().reference()
-    // Listen for new messages in the Firebase database
+    // Listen for new messages in the Firebase databases
     _refHandle = self.ref.child("messages").observe(.childAdded, with: { [weak self] (snapshot) -> Void in
         guard let strongSelf = self else { return }
         strongSelf.messages.append(snapshot)
@@ -187,6 +187,8 @@ class FCViewController: UIViewController, UITableViewDataSource, UITableViewDele
   }
 
   @IBAction func signOut(_ sender: UIButton) {
+    try! FIRAuth.auth()?.signOut()
+    GIDSignIn.sharedInstance().signOut()
     AppState.sharedInstance.signedIn = false
     dismiss(animated: true, completion: nil)
   }
