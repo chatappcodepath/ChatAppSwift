@@ -33,12 +33,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   }
    
     @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url as URL!,
+                                                 sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                 annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+    }
+    /*
+    @available(iOS 9.0, *)
     func application(application: UIApplication,
                      openURL url: URL, options: [String: AnyObject]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url as URL!,
                                                  sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication.rawValue] as? String,
                                                  annotation: options[UIApplicationOpenURLOptionsKey.annotation.rawValue])
     }
+    */
  
     /*
     func application(application: UIApplication,
@@ -68,6 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             
             print("Successfully signed in Firebase....")
+            if let vc = self.window?.rootViewController as? SignInViewController {
+                   vc.signedIn(user);
+            }
+            if let userName = user?.email {
+                print("Signed in with user " + userName);
+            }
         })
     }
     
@@ -75,6 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
                 withError error: NSError!) {
         // Perform any operations when the user disconnects from app here.
-        // ...
+        try! FIRAuth.auth()!.signOut()
     }
 }
