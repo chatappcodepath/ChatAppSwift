@@ -72,8 +72,11 @@ extension UserGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedGroup = groups[indexPath.row];
-        let groupMessagesVC = GroupMessagesViewController()
-        groupMessagesVC.group = selectedGroup
+//        let groupMessagesVC = UserGroupsMessageExtensionViewController()
+//        groupMessagesVC.selectedGroup = selectedGroup
+//        navigationController?.pushViewController(groupMessagesVC, animated: true)
+        
+        let groupMessagesVC = MovieViewController()    
         navigationController?.pushViewController(groupMessagesVC, animated: true)
         // Touched row at indexpath
     }
