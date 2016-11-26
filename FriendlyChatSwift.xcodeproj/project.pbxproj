@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		10D602891D5A2F9F004530C6 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 10D602881D5A2F9F004530C6 /* shared */; };
+		216DEC011DE92C3700A383EF /* UserGroupsMessageExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216DEBFF1DE92C3700A383EF /* UserGroupsMessageExtensionViewController.swift */; };
+		216DEC021DE92C3700A383EF /* UserGroupsMessageExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216DEC001DE92C3700A383EF /* UserGroupsMessageExtensionViewController.xib */; };
+		216DEC051DE933CF00A383EF /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216DEC031DE933CF00A383EF /* MovieViewController.swift */; };
+		216DEC061DE933CF00A383EF /* MovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216DEC041DE933CF00A383EF /* MovieViewController.xib */; };
+		216DEC091DE935BB00A383EF /* MovieCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216DEC071DE935BB00A383EF /* MovieCellTableViewCell.swift */; };
+		216DEC0A1DE935BB00A383EF /* MovieCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216DEC081DE935BB00A383EF /* MovieCellTableViewCell.xib */; };
+		216DEC0D1DE9FD0500A383EF /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216DEC0B1DE9FD0500A383EF /* MovieCollectionCell.swift */; };
+		216DEC0E1DE9FD0500A383EF /* MovieCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216DEC0C1DE9FD0500A383EF /* MovieCollectionCell.xib */; };
 		2C595F061B34B73A00355AE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C595F041B34B73A00355AE7 /* Constants.swift */; };
 		2C8E6C2B1B16875B0073CE3D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E6C2A1B16875B0073CE3D /* SignInViewController.swift */; };
 		2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */; };
@@ -32,6 +40,14 @@
 		1037935F1BF4256400C88958 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Pods/Firebase/Headers/module.modulemap; sourceTree = "<group>"; };
 		107960741C61253B003DB6CC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10D602881D5A2F9F004530C6 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
+		216DEBFF1DE92C3700A383EF /* UserGroupsMessageExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGroupsMessageExtensionViewController.swift; sourceTree = "<group>"; };
+		216DEC001DE92C3700A383EF /* UserGroupsMessageExtensionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserGroupsMessageExtensionViewController.xib; sourceTree = "<group>"; };
+		216DEC031DE933CF00A383EF /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		216DEC041DE933CF00A383EF /* MovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieViewController.xib; sourceTree = "<group>"; };
+		216DEC071DE935BB00A383EF /* MovieCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCellTableViewCell.swift; sourceTree = "<group>"; };
+		216DEC081DE935BB00A383EF /* MovieCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCellTableViewCell.xib; sourceTree = "<group>"; };
+		216DEC0B1DE9FD0500A383EF /* MovieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionCell.swift; sourceTree = "<group>"; };
+		216DEC0C1DE9FD0500A383EF /* MovieCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCollectionCell.xib; sourceTree = "<group>"; };
 		2C595F041B34B73A00355AE7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2C8E6C2A1B16875B0073CE3D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
@@ -76,6 +92,10 @@
 				4CDBF0FC1DE56A3B0010D251 /* UserGroupsViewController.swift */,
 				4CDBF0FD1DE56A3B0010D251 /* UserGroupsViewController.xib */,
 				4CDBF10B1DE73C010010D251 /* GroupMessagesViewController.swift */,
+				216DEBFF1DE92C3700A383EF /* UserGroupsMessageExtensionViewController.swift */,
+				216DEC001DE92C3700A383EF /* UserGroupsMessageExtensionViewController.xib */,
+				216DEC031DE933CF00A383EF /* MovieViewController.swift */,
+				216DEC041DE933CF00A383EF /* MovieViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -103,6 +123,10 @@
 			children = (
 				4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */,
 				4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */,
+				216DEC071DE935BB00A383EF /* MovieCellTableViewCell.swift */,
+				216DEC081DE935BB00A383EF /* MovieCellTableViewCell.xib */,
+				216DEC0B1DE9FD0500A383EF /* MovieCollectionCell.swift */,
+				216DEC0C1DE9FD0500A383EF /* MovieCollectionCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -239,11 +263,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216DEC0E1DE9FD0500A383EF /* MovieCollectionCell.xib in Resources */,
 				4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */,
+				216DEC021DE92C3700A383EF /* UserGroupsMessageExtensionViewController.xib in Resources */,
 				4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */,
 				10D602891D5A2F9F004530C6 /* shared in Resources */,
 				4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */,
 				4CDBF0FF1DE56A3B0010D251 /* UserGroupsViewController.xib in Resources */,
+				216DEC0A1DE935BB00A383EF /* MovieCellTableViewCell.xib in Resources */,
+				216DEC061DE933CF00A383EF /* MovieViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,11 +335,15 @@
 				4CDBF0F91DE55CDF0010D251 /* LoginViewController.swift in Sources */,
 				2C8E6C2B1B16875B0073CE3D /* SignInViewController.swift in Sources */,
 				2CA807BE1B217B21009AD7F2 /* AppState.swift in Sources */,
+				216DEC011DE92C3700A383EF /* UserGroupsMessageExtensionViewController.swift in Sources */,
 				4CDBF10D1DE73C010010D251 /* GroupMessagesViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
+				216DEC0D1DE9FD0500A383EF /* MovieCollectionCell.swift in Sources */,
 				4CDBF1051DE5F19C0010D251 /* FirebaseUtils.swift in Sources */,
 				4CDBF1091DE731410010D251 /* GroupsTableViewCell.swift in Sources */,
+				216DEC091DE935BB00A383EF /* MovieCellTableViewCell.swift in Sources */,
 				4C547F3B1DE758A100A434CB /* Message.swift in Sources */,
+				216DEC051DE933CF00A383EF /* MovieViewController.swift in Sources */,
 				2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				4CDBF0FE1DE56A3B0010D251 /* UserGroupsViewController.swift in Sources */,

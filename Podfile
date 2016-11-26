@@ -11,6 +11,7 @@ pod 'Firebase/Database'
 pod 'Firebase/RemoteConfig'
 pod 'GoogleSignIn'
 pod 'JSQMessagesViewController'
+pod 'AFNetworking', '~> 3.0'
 
 target 'FriendlyChatSwift' do
 end
