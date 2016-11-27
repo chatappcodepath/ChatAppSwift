@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		10D602891D5A2F9F004530C6 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 10D602881D5A2F9F004530C6 /* shared */; };
+		210302611DEACBA700DDBB2D /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2103025F1DEACBA700DDBB2D /* MovieViewController.swift */; };
+		210302621DEACBA700DDBB2D /* MovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210302601DEACBA700DDBB2D /* MovieViewController.xib */; };
+		210302651DEACBC400DDBB2D /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210302631DEACBC400DDBB2D /* MovieCollectionCell.swift */; };
+		210302661DEACBC400DDBB2D /* MovieCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210302641DEACBC400DDBB2D /* MovieCollectionCell.xib */; };
 		2C595F061B34B73A00355AE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C595F041B34B73A00355AE7 /* Constants.swift */; };
 		2C8E6C2B1B16875B0073CE3D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E6C2A1B16875B0073CE3D /* SignInViewController.swift */; };
 		2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */; };
@@ -34,6 +38,10 @@
 		1037935F1BF4256400C88958 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Pods/Firebase/Headers/module.modulemap; sourceTree = "<group>"; };
 		107960741C61253B003DB6CC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10D602881D5A2F9F004530C6 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
+		2103025F1DEACBA700DDBB2D /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieViewController.swift; path = ViewControllers/MovieViewController.swift; sourceTree = "<group>"; };
+		210302601DEACBA700DDBB2D /* MovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MovieViewController.xib; path = ViewControllers/MovieViewController.xib; sourceTree = "<group>"; };
+		210302631DEACBC400DDBB2D /* MovieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieCollectionCell.swift; path = Views/MovieCollectionCell.swift; sourceTree = "<group>"; };
+		210302641DEACBC400DDBB2D /* MovieCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MovieCollectionCell.xib; path = Views/MovieCollectionCell.xib; sourceTree = "<group>"; };
 		2C595F041B34B73A00355AE7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2C8E6C2A1B16875B0073CE3D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
@@ -75,6 +83,8 @@
 		4CDBF0FB1DE55CEB0010D251 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2103025F1DEACBA700DDBB2D /* MovieViewController.swift */,
+				210302601DEACBA700DDBB2D /* MovieViewController.xib */,
 				4CDBF0F71DE55CDF0010D251 /* LoginViewController.swift */,
 				4C0076BC1DEA81AE00C8F767 /* PluginsViewController.swift */,
 				4C0076BD1DEA81AE00C8F767 /* PluginsViewController.xib */,
@@ -107,6 +117,8 @@
 		4CDBF1061DE730F60010D251 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				210302631DEACBC400DDBB2D /* MovieCollectionCell.swift */,
+				210302641DEACBC400DDBB2D /* MovieCollectionCell.xib */,
 				4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */,
 				4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */,
 			);
@@ -249,8 +261,10 @@
 				4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */,
 				4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */,
 				10D602891D5A2F9F004530C6 /* shared in Resources */,
+				210302661DEACBC400DDBB2D /* MovieCollectionCell.xib in Resources */,
 				4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */,
 				4CDBF0FF1DE56A3B0010D251 /* UserGroupsViewController.xib in Resources */,
+				210302621DEACBA700DDBB2D /* MovieViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210302651DEACBC400DDBB2D /* MovieCollectionCell.swift in Sources */,
 				4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */,
 				4CDBF1021DE5EB480010D251 /* Group.swift in Sources */,
 				4CDBF0F91DE55CDF0010D251 /* LoginViewController.swift in Sources */,
@@ -320,6 +335,7 @@
 				4CDBF1091DE731410010D251 /* GroupsTableViewCell.swift in Sources */,
 				4C547F3B1DE758A100A434CB /* Message.swift in Sources */,
 				2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */,
+				210302611DEACBA700DDBB2D /* MovieViewController.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				4CDBF0FE1DE56A3B0010D251 /* UserGroupsViewController.swift in Sources */,
 				4C0076BE1DEA81AE00C8F767 /* PluginsViewController.swift in Sources */,
