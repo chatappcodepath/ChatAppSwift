@@ -15,7 +15,25 @@ class GroupMessagesViewController: JSQMessagesViewController {
     var sender: FIRUser!
     fileprivate var _refHandle: FIRDatabaseHandle!
     public var group: Group!
-    
+    var pluginsViewController: PluginsViewController?
+    var showingAccessoryView: Bool? {
+        didSet {
+            var auxViewHeight:CGFloat = 0;
+            if (showingAccessoryView)! {
+                auxViewHeight = 250;
+                pluginsViewController = PluginsViewController(nibName: "PluginsViewController", bundle: Bundle.main)
+                self.addChildViewController(pluginsViewController!)
+                self.view.addSubview((pluginsViewController?.view)!)
+                pluginsViewController?.view.frame = CGRect(x: 0, y: self.view.frame.height - auxViewHeight, width: self.view.frame.width, height: auxViewHeight)
+                
+            } else {
+                pluginsViewController?.removeFromParentViewController()
+                self.pluginsViewController?.view?.removeFromSuperview()
+            }
+            
+            self.jsq_setToolbarBottomLayoutGuideConstant(auxViewHeight)
+        }
+    }
     
     // *** STEP 1: STORE FIREBASE REFERENCES
     var messagesRef: FIRDatabaseReference!
@@ -76,7 +94,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        inputToolbar.contentView.leftBarButtonItem = nil
+        //inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true
         navigationController?.navigationBar.topItem?.title = "Chat Groups"
         
@@ -94,6 +112,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         }
         
         setupFirebase()
+        showingAccessoryView = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -124,6 +143,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
         print("Camera pressed!")
+        showingAccessoryView = !showingAccessoryView!
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {

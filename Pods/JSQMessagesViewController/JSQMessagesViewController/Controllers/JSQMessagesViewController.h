@@ -305,6 +305,8 @@
  */
 - (void)viewWillDisappear:(BOOL)animated NS_REQUIRES_SUPER;
 
+- (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant;
+
 /**
  Call to super required.
  */

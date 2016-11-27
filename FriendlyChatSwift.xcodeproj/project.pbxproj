@@ -13,6 +13,8 @@
 		2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */; };
 		2CA807BE1B217B21009AD7F2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA807BD1B217B21009AD7F2 /* AppState.swift */; };
 		3B2C797F9F79EAA1803ED47A /* Pods_FriendlyChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A8152DE7FC811CF1CC60AC /* Pods_FriendlyChatSwift.framework */; };
+		4C0076BE1DEA81AE00C8F767 /* PluginsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0076BC1DEA81AE00C8F767 /* PluginsViewController.swift */; };
+		4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0076BD1DEA81AE00C8F767 /* PluginsViewController.xib */; };
 		4C547F3B1DE758A100A434CB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C547F3A1DE758A100A434CB /* Message.swift */; };
 		4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72D53B1DE8D68300B9F685 /* PushNotification.swift */; };
 		4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF0F01DE41BF70010D251 /* GoogleService-Info.plist */; };
@@ -36,6 +38,8 @@
 		2C8E6C2A1B16875B0073CE3D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2CA807BB1B21702E009AD7F2 /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
 		2CA807BD1B217B21009AD7F2 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		4C0076BC1DEA81AE00C8F767 /* PluginsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PluginsViewController.swift; path = ViewControllers/PluginsViewController.swift; sourceTree = "<group>"; };
+		4C0076BD1DEA81AE00C8F767 /* PluginsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PluginsViewController.xib; path = ViewControllers/PluginsViewController.xib; sourceTree = "<group>"; };
 		4C547F3A1DE758A100A434CB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
 		4C72D53B1DE8D68300B9F685 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushNotification.swift; path = Models/PushNotification.swift; sourceTree = "<group>"; };
 		4CDBF0F01DE41BF70010D251 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				4CDBF0F71DE55CDF0010D251 /* LoginViewController.swift */,
+				4C0076BC1DEA81AE00C8F767 /* PluginsViewController.swift */,
+				4C0076BD1DEA81AE00C8F767 /* PluginsViewController.xib */,
 				4CDBF0F81DE55CDF0010D251 /* LoginViewController.xib */,
 				4CDBF0FC1DE56A3B0010D251 /* UserGroupsViewController.swift */,
 				4CDBF0FD1DE56A3B0010D251 /* UserGroupsViewController.xib */,
@@ -240,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */,
+				4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */,
 				4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */,
 				10D602891D5A2F9F004530C6 /* shared in Resources */,
 				4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */,
@@ -315,6 +322,7 @@
 				2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				4CDBF0FE1DE56A3B0010D251 /* UserGroupsViewController.swift in Sources */,
+				4C0076BE1DEA81AE00C8F767 /* PluginsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
