@@ -25,6 +25,7 @@ class Message: NSObject {
     var isBotMessage : Bool?
     var msgType : String?
     var name : String?
+    var mid : String?
     var payLoad : String?
     var photoUrl : String?
     var sid : String?
@@ -45,6 +46,7 @@ class Message: NSObject {
         isBotMessage = messageDictionary["isBotMessage"] as? Bool
         msgType = messageDictionary["msgType"] as? String
         name = messageDictionary["name"] as? String
+        mid = messageDictionary["mid"] as? String
         payLoad = messageDictionary["payLoad"] as? String
         photoUrl = messageDictionary["photoUrl"] as? String
         sid = messageDictionary["sid"] as? String
@@ -60,6 +62,7 @@ class Message: NSObject {
         messageDictionary["isBotMessage"] = isBotMessage
         messageDictionary["msgType"] = msgType
         messageDictionary["name"] = name
+        messageDictionary["mid"] = mid
         messageDictionary["payLoad"] = payLoad
         messageDictionary["photoUrl"] = photoUrl
         messageDictionary["sid"] = sid
