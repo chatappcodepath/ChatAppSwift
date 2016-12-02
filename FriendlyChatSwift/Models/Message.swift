@@ -25,10 +25,12 @@ class Message: NSObject {
     var isBotMessage : Bool?
     var msgType : String?
     var name : String?
+    var mid : String?
     var payLoad : String?
     var photoUrl : String?
     var sid : String?
     var ts: TimeInterval?
+    var msgHash: UInt!
     var tsMilliSec: UInt? {
         get {
             return UInt(ts! * 1000)
@@ -37,7 +39,6 @@ class Message: NSObject {
             ts = TimeInterval(Float(newTsMilliSec!/1000))
         }
     }
-    
 
     public init(snapshot: FIRDataSnapshot) {
         super.init()
@@ -45,10 +46,12 @@ class Message: NSObject {
         isBotMessage = messageDictionary["isBotMessage"] as? Bool
         msgType = messageDictionary["msgType"] as? String
         name = messageDictionary["name"] as? String
+        mid = messageDictionary["mid"] as? String
         payLoad = messageDictionary["payLoad"] as? String
         photoUrl = messageDictionary["photoUrl"] as? String
         sid = messageDictionary["sid"] as? String
         tsMilliSec = messageDictionary["ts"] as? UInt
+        msgHash = MessageIDCounter.sharedInstance.getCount()
     }
     
     override init() {
@@ -60,6 +63,7 @@ class Message: NSObject {
         messageDictionary["isBotMessage"] = isBotMessage
         messageDictionary["msgType"] = msgType
         messageDictionary["name"] = name
+        messageDictionary["mid"] = mid
         messageDictionary["payLoad"] = payLoad
         messageDictionary["photoUrl"] = photoUrl
         messageDictionary["sid"] = sid
@@ -69,18 +73,19 @@ class Message: NSObject {
     }
     
     public static func newTextMessageWith(content: String) -> Message {
-        let newMesssage = Message();
+        let newMessage = Message();
         let currentUser = FirebaseUtils.sharedInstance.authUser;
         
-        newMesssage.isBotMessage = false
-        newMesssage.msgType = "Text"
-        newMesssage.name = currentUser?.displayName
-        newMesssage.payLoad = content
-        newMesssage.photoUrl = currentUser?.photoURL?.absoluteString
-        newMesssage.sid = currentUser?.uid
-        newMesssage.ts = Date().timeIntervalSince1970
+        newMessage.isBotMessage = false
+        newMessage.msgType = "Text"
+        newMessage.name = currentUser?.displayName
+        newMessage.payLoad = content
+        newMessage.photoUrl = currentUser?.photoURL?.absoluteString
+        newMessage.sid = currentUser?.uid
+        newMessage.ts = Date().timeIntervalSince1970
+        newMessage.msgHash = MessageIDCounter.sharedInstance.getCount()
         
-        return newMesssage;
+        return newMessage;
     }
 }
 
@@ -134,10 +139,9 @@ extension Message: JSQMessageData {
      *  @discussion This value must be unique for each message with distinct contents.
      *  This value is used to cache layout information in the collection view.
      */
-    public func messageHash() -> UInt {
-        return UInt(self.ts!)
+    func messageHash() -> UInt {
+        return self.msgHash!
     }
-    
     
     /**
      *  @return The body text of the message.
@@ -148,4 +152,15 @@ extension Message: JSQMessageData {
         return self.payLoad
     }
     
+}
+
+class MessageIDCounter {
+    static let sharedInstance = MessageIDCounter()
+    
+    var count:UInt = 0
+    
+    func getCount() -> UInt {
+        count += 1
+        return count
+    }
 }
