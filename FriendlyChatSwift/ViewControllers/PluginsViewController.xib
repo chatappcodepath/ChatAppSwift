@@ -15,18 +15,7 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello from PluginsVC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATI-eL-bKu">
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" red="1" green="0.96356136049999996" blue="0.40086692390000001" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstItem="ATI-eL-bKu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NvQ-Qk-Muq"/>
-                <constraint firstItem="ATI-eL-bKu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="T7Z-bh-XCf"/>
-            </constraints>
+            <color key="backgroundColor" red="0.81502503449999997" green="0.81502503449999997" blue="0.81502503449999997" alpha="1" colorSpace="calibratedRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

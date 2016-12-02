@@ -15,13 +15,13 @@ class GroupMessagesViewController: JSQMessagesViewController {
     var sender: FIRUser!
     fileprivate var _refHandle: FIRDatabaseHandle!
     public var group: Group!
-    var pluginsViewController: MovieViewController?
+    var pluginsViewController: PluginsViewController?
     var showingAccessoryView: Bool? {
         didSet {
             var auxViewHeight:CGFloat = 0;
             if (showingAccessoryView)! {
                 auxViewHeight = 250;
-                pluginsViewController = MovieViewController(nibName: "MovieViewController", bundle: Bundle.main)
+                pluginsViewController = PluginsViewController(nibName: "PluginsViewController", bundle: Bundle.main)
                 self.addChildViewController(pluginsViewController!)
                 self.view.addSubview((pluginsViewController?.view)!)
                 pluginsViewController?.view.frame = CGRect(x: 0, y: self.view.frame.height - auxViewHeight, width: self.view.frame.width, height: auxViewHeight)
