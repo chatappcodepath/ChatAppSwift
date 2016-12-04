@@ -21,9 +21,29 @@ import Foundation
 import FirebaseDatabase
 import JSQMessagesViewController
 
+enum MessageType: String {
+    case Movie
+    case Text
+    case TicTacToe
+    var specialMessage: Bool {
+        if (self == MessageType.Text) {
+            return false
+        }
+        return true
+    }
+    static func parsedPayloadFor(payload: String, messageType: MessageType) -> Any {
+        switch messageType {
+        case .Movie:
+            return MoviePayload(jsonPayload: payload)
+        default:
+            return payload
+        }
+    }
+}
+
 class Message: NSObject {
     var isBotMessage : Bool?
-    var msgType : String?
+    var msgType : MessageType?
     var name : String?
     var mid : String?
     var payLoad : String?
@@ -39,12 +59,23 @@ class Message: NSObject {
             ts = TimeInterval(Float(newTsMilliSec!/1000))
         }
     }
-
+    var isSpecialMessage: Bool {
+        return msgType?.specialMessage ?? false ;
+    }
+    var parsedPayload: Any? {
+        if let payLoad = payLoad, let msgType = msgType {
+            return MessageType.parsedPayloadFor(payload: payLoad, messageType: msgType)
+        }
+        return payLoad
+    }
+    
     public init(snapshot: FIRDataSnapshot) {
         super.init()
         let messageDictionary = snapshot.value as! Dictionary<String, AnyObject>
         isBotMessage = messageDictionary["isBotMessage"] as? Bool
-        msgType = messageDictionary["msgType"] as? String
+        if let stringMessageType = messageDictionary["msgType"] as? String {
+            msgType = MessageType(rawValue: stringMessageType)
+        }
         name = messageDictionary["name"] as? String
         mid = messageDictionary["mid"] as? String
         payLoad = messageDictionary["payLoad"] as? String
@@ -77,7 +108,7 @@ class Message: NSObject {
         let currentUser = FirebaseUtils.sharedInstance.authUser;
         
         newMessage.isBotMessage = false
-        newMessage.msgType = "Text"
+        newMessage.msgType = .Text
         newMessage.name = currentUser?.displayName
         newMessage.payLoad = content
         newMessage.photoUrl = currentUser?.photoURL?.absoluteString

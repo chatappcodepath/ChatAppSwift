@@ -112,6 +112,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         }
         
         setupFirebase()
+        registerNibsForSpecialCells()
         showingAccessoryView = false
     }
     
@@ -124,6 +125,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         super.viewWillDisappear(animated)
         
     }
+    
     
     // ACTIONS
     
@@ -145,11 +147,51 @@ class GroupMessagesViewController: JSQMessagesViewController {
         print("Camera pressed!")
         showingAccessoryView = !showingAccessoryView!
     }
+}
+
+// for Plugins
+extension GroupMessagesViewController {
     
+    func registerNibsForSpecialCells() -> Void{
+        collectionView.register(UINib(nibName: MovieMessageCollectionViewCell.xibFileName, bundle: Bundle.main), forCellWithReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier)
+    }
+    
+    func sizeForSpecialMessage(_ message: Message) -> CGSize {
+        if (message.msgType == .Movie) {
+            return CGSize(width: 210, height: 280)
+        }
+        return CGSize(width: 210, height: 210)
+    }
+    
+    func collectionViewCellForSpecialMessage(_ message: Message, indexPath: IndexPath ) -> UICollectionViewCell {
+        var specialCell: UICollectionViewCell;
+        if (message.msgType == .Movie) {
+            specialCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier , for: indexPath)
+            (specialCell as! MovieMessageCollectionViewCell).message = message
+        } else {
+            specialCell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+        }
+        return specialCell
+    }
+}
+
+// CollectionView Delegates
+extension GroupMessagesViewController {
+    // needed for calculating height
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
     
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let message = messages[indexPath.row]
+        if (message.isSpecialMessage) {
+            return sizeForSpecialMessage(message)
+        }
+        
+        return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath);
+    }
+    
+    // called from collectionViewCellForItemAtIndexPath
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
         
@@ -159,7 +201,8 @@ class GroupMessagesViewController: JSQMessagesViewController {
         
         return incomingBubbleImageView
     }
-
+    
+    // called from collectionViewCellForItemAtIndexPath
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messages[indexPath.item]
         if let avatar = avatars[message.senderDisplayName()] {
@@ -174,10 +217,16 @@ class GroupMessagesViewController: JSQMessagesViewController {
         return messages.count
     }
     
+    // normal collectionView Delegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let message = messages[indexPath.item]
+        
+        if message.isSpecialMessage {
+            return collectionViewCellForSpecialMessage(message, indexPath: indexPath)
+        }
+        
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         
-        let message = messages[indexPath.item]
         if message.senderId() == sender.uid {
             cell.textView.textColor = UIColor.black
         } else {
@@ -209,7 +258,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         return NSAttributedString(string:message.name!)
     }
     
-    
+    // Top bubble height
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
         
