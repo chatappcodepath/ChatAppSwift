@@ -156,22 +156,37 @@ extension GroupMessagesViewController {
         collectionView.register(UINib(nibName: MovieMessageCollectionViewCell.xibFileName, bundle: Bundle.main), forCellWithReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier)
     }
     
-    func sizeForSpecialMessage(_ message: Message) -> CGSize {
+    func sizeForSpecialMessage(_ message: Message, width: CGFloat) -> CGSize {
         if (message.msgType == .Movie) {
-            return CGSize(width: 210, height: 280)
+            return CGSize(width: width, height: 280)
         }
-        return CGSize(width: 210, height: 210)
+        return CGSize(width: width, height: 210)
     }
     
     func collectionViewCellForSpecialMessage(_ message: Message, indexPath: IndexPath ) -> UICollectionViewCell {
         var specialCell: UICollectionViewCell;
         if (message.msgType == .Movie) {
             specialCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier , for: indexPath)
-            (specialCell as! MovieMessageCollectionViewCell).message = message
+            let specialMovieCell = specialCell as! MovieMessageCollectionViewCell
+            specialMovieCell.message = message
+            configureSpecialCell(cell: specialMovieCell, indexPath: indexPath)
         } else {
             specialCell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         }
         return specialCell
+    }
+    
+    func configureSpecialCell(cell: MovieMessageCollectionViewCell, indexPath: IndexPath ) -> Void {
+        if let avatarDataSource = collectionView(collectionView, avatarImageDataForItemAt: indexPath) {
+            cell.avatarImageView.image = avatarDataSource.avatarImage()
+            cell.avatarImageView.highlightedImage = avatarDataSource.avatarHighlightedImage()
+        }
+        if let bubbleDataSource = collectionView(collectionView, messageBubbleImageDataForItemAt: indexPath) {
+            cell.messageBubbleImageView.image = bubbleDataSource.messageBubbleImage()
+            cell.messageBubbleImageView.highlightedImage = bubbleDataSource.messageBubbleHighlightedImage()
+        }
+        let bubbleTopLabelHeight = heightForMessageBubbleTopLabelAt(indexPath: indexPath)
+        cell.messageBubbleTopLabelHeightConstraint.constant = bubbleTopLabelHeight
     }
 }
 
@@ -185,7 +200,8 @@ extension GroupMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let message = messages[indexPath.row]
         if (message.isSpecialMessage) {
-            return sizeForSpecialMessage(message)
+            let width = (collectionViewLayout as! JSQMessagesCollectionViewFlowLayout).itemWidth
+            return sizeForSpecialMessage(message, width: width)
         }
         
         return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath);
@@ -260,6 +276,10 @@ extension GroupMessagesViewController {
     
     // Top bubble height
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        return heightForMessageBubbleTopLabelAt(indexPath: indexPath)
+    }
+    
+    func heightForMessageBubbleTopLabelAt(indexPath: IndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
         
         // Sent by me, skip
