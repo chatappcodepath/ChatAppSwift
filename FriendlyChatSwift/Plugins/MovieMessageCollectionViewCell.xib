@@ -9,10 +9,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="lHh-s3-PDB" customClass="MovieMessageCollectionViewCell" customModule="FriendlyChatSwift" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="286" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                <rect key="frame" x="0.0" y="0.0" width="286" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-ls-sdT" userLabel="Bubble top label" customClass="JSQMessagesLabel">
@@ -84,14 +84,13 @@
                 <constraint firstItem="xh8-ls-sdT" firstAttribute="leading" secondItem="lHh-s3-PDB" secondAttribute="leading" id="tZT-kH-naX"/>
                 <constraint firstAttribute="trailing" secondItem="xh8-ls-sdT" secondAttribute="trailing" id="wcW-PJ-fDU"/>
             </constraints>
-            <size key="customSize" width="317" height="391"/>
+            <size key="customSize" width="283" height="391"/>
             <connections>
                 <outlet property="contentLeadingConstraint" destination="IR8-hr-epQ" id="3PL-Jh-Cn9"/>
                 <outlet property="contentTrailingConstraint" destination="6xP-Em-sbM" id="7VU-yY-bXf"/>
                 <outlet property="leftAvatarImageView" destination="xO0-AZ-AEG" id="ufg-Xi-SYa"/>
                 <outlet property="leftAvatarSpacingConstraint" destination="6gJ-hT-Hl2" id="oaf-ve-PNB"/>
                 <outlet property="messageBubbleContainerView" destination="Te6-bP-uHq" id="zFG-vW-aiG"/>
-                <outlet property="messageBubbleContainerWidthConstraint" destination="RdF-7V-N57" id="hZh-UH-KLC"/>
                 <outlet property="messageBubbleImageView" destination="YVQ-AB-he5" id="BII-bI-3UQ"/>
                 <outlet property="messageBubbleTopLabel" destination="xh8-ls-sdT" id="BfF-yN-CsR"/>
                 <outlet property="messageBubbleTopLabelHeightConstraint" destination="ERf-Zg-Szw" id="LEe-vc-HZm"/>
@@ -99,7 +98,7 @@
                 <outlet property="rightAvatarImageView" destination="DiL-ds-TJy" id="q94-FZ-IPq"/>
                 <outlet property="rightAvatarSpacingConstraint" destination="fpm-td-edP" id="bUV-ae-xh2"/>
             </connections>
-            <point key="canvasLocation" x="-66" y="-18"/>
+            <point key="canvasLocation" x="-83" y="-18"/>
         </collectionViewCell>
     </objects>
 </document>

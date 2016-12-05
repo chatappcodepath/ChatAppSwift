@@ -154,6 +154,7 @@ extension GroupMessagesViewController {
     
     func registerNibsForSpecialCells() -> Void{
         collectionView.register(UINib(nibName: MovieMessageCollectionViewCell.xibFileName, bundle: Bundle.main), forCellWithReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier)
+        collectionView.register(UINib(nibName: TicTacToeMessageCollectionViewCell.xibFileName, bundle:Bundle.main), forCellWithReuseIdentifier: TicTacToeMessageCollectionViewCell.cellReuseIdentifier)
     }
     
     func sizeForSpecialMessage(_ message: Message, width: CGFloat) -> CGSize {
@@ -164,19 +165,22 @@ extension GroupMessagesViewController {
     }
     
     func collectionViewCellForSpecialMessage(_ message: Message, indexPath: IndexPath ) -> UICollectionViewCell {
-        var specialCell: UICollectionViewCell;
+        var specialCell: UICollectionViewCell?;
         if (message.msgType == .Movie) {
             specialCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier , for: indexPath)
-            let specialMovieCell = specialCell as! MovieMessageCollectionViewCell
-            specialMovieCell.message = message
-            configureSpecialCell(cell: specialMovieCell, indexPath: indexPath)
-        } else {
-            specialCell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+        } else if (message.msgType == .TicTacToe){
+            specialCell = collectionView.dequeueReusableCell(withReuseIdentifier: TicTacToeMessageCollectionViewCell.cellReuseIdentifier, for: indexPath)
         }
-        return specialCell
+        
+        if let specialCell = specialCell as? MessageCollectionViewCell {
+            specialCell.message = message
+            configureSpecialCell(cell: specialCell, indexPath: indexPath)
+            return specialCell
+        }
+        return super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
     }
     
-    func configureSpecialCell(cell: MovieMessageCollectionViewCell, indexPath: IndexPath ) -> Void {
+    func configureSpecialCell(cell: MessageCollectionViewCell, indexPath: IndexPath ) -> Void {
         let message = messages[indexPath.row]
         let avatarDataSource = collectionView(collectionView, avatarImageDataForItemAt: indexPath)
         let bubbleDataSource = collectionView(collectionView, messageBubbleImageDataForItemAt: indexPath)

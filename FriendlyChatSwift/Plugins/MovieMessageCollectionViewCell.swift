@@ -9,30 +9,17 @@
 import UIKit
 import JSQMessagesViewController
 
-class MovieMessageCollectionViewCell: UICollectionViewCell {
-    public static let cellReuseIdentifier = "MovieMessageCollectionViewCellIdentifier"
+class MovieMessageCollectionViewCell: MessageCollectionViewCell {
+    public static let cellReuseIdentifier = "MovieMessageCollectionViewCell"
     public static let xibFileName = "MovieMessageCollectionViewCell"
     public static let rawHeight:CGFloat = 280
     
-    @IBOutlet weak var messageBubbleContainerView: UIView!
-    @IBOutlet weak var messageBubbleContainerWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var messageBubbleImageView: UIImageView!
-    @IBOutlet weak var messageBubbleTopLabel: UILabel!
-    @IBOutlet weak var messageBubbleTopLabelHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var contentLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contentTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var movieImageView: UIImageView!
-    
-    @IBOutlet weak var leftAvatarSpacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var rightAvatarSpacingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var leftAvatarImageView: UIImageView!
-    @IBOutlet weak var rightAvatarImageView: UIImageView!
     
     var imageRequest: URLRequest?
     var movieModel: MoviePayload?
     
-    var message: Message? {
+    override var message: Message? {
         didSet {
             movieModel = message?.parsedPayload as? MoviePayload
             if let movieModel = movieModel {
@@ -56,26 +43,6 @@ class MovieMessageCollectionViewCell: UICollectionViewCell {
                 })
             }
         }
-    }
-    
-    func configureCellWith(avatarDataSource: JSQMessageAvatarImageDataSource?, bubbleImageDataSource: JSQMessageBubbleImageDataSource?, isIncomingMessage: Bool, topSpacing: CGFloat) {
-        
-        messageBubbleImageView.image = bubbleImageDataSource?.messageBubbleImage()
-        messageBubbleImageView.highlightedImage = bubbleImageDataSource?.messageBubbleHighlightedImage()
-        messageBubbleTopLabelHeightConstraint.constant = topSpacing
-        
-        let activeAvatarImageView = isIncomingMessage ? leftAvatarImageView : rightAvatarImageView
-        let passiveAvatarImageView = isIncomingMessage ? rightAvatarImageView : leftAvatarImageView
-        
-        passiveAvatarImageView?.isHidden = true
-        activeAvatarImageView?.image = avatarDataSource?.avatarImage()
-        activeAvatarImageView?.highlightedImage = avatarDataSource?.avatarHighlightedImage()
-        activeAvatarImageView?.isHidden = false
-        
-        leftAvatarSpacingConstraint.priority = isIncomingMessage ? 751 : 750
-        rightAvatarSpacingConstraint.priority = isIncomingMessage ? 750 : 751
-        contentLeadingConstraint.constant = isIncomingMessage ? 10: 5
-        contentTrailingConstraint.constant = isIncomingMessage ? 5: 10
     }
     
     func handleTap(recognizer: UITapGestureRecognizer) {
