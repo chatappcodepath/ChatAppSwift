@@ -7,8 +7,8 @@ class GroupMessagesViewController: JSQMessagesViewController {
 
     var messages = [Message]()
     var avatars = Dictionary<String, JSQMessagesAvatarImage>()
-    let outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    let incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
+    let outgoingBubbleImageDataSource = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    let incomingBubbleImageDataSource = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
     var senderImageUrl: String!
     var batchMessages = true
     var ref: FIRDatabaseReference!
@@ -177,16 +177,13 @@ extension GroupMessagesViewController {
     }
     
     func configureSpecialCell(cell: MovieMessageCollectionViewCell, indexPath: IndexPath ) -> Void {
-        if let avatarDataSource = collectionView(collectionView, avatarImageDataForItemAt: indexPath) {
-            cell.avatarImageView.image = avatarDataSource.avatarImage()
-            cell.avatarImageView.highlightedImage = avatarDataSource.avatarHighlightedImage()
-        }
-        if let bubbleDataSource = collectionView(collectionView, messageBubbleImageDataForItemAt: indexPath) {
-            cell.messageBubbleImageView.image = bubbleDataSource.messageBubbleImage()
-            cell.messageBubbleImageView.highlightedImage = bubbleDataSource.messageBubbleHighlightedImage()
-        }
-        let bubbleTopLabelHeight = heightForMessageBubbleTopLabelAt(indexPath: indexPath)
-        cell.messageBubbleTopLabelHeightConstraint.constant = bubbleTopLabelHeight
+        let message = messages[indexPath.row]
+        let avatarDataSource = collectionView(collectionView, avatarImageDataForItemAt: indexPath)
+        let bubbleDataSource = collectionView(collectionView, messageBubbleImageDataForItemAt: indexPath)
+        let isIncomingMessage = message.sid != senderId
+        let topSpacing = heightForMessageBubbleTopLabelAt(indexPath: indexPath)
+        
+        cell.configureCellWith(avatarDataSource: avatarDataSource, bubbleImageDataSource: bubbleDataSource, isIncomingMessage: isIncomingMessage, topSpacing: topSpacing)
     }
 }
 
@@ -212,10 +209,10 @@ extension GroupMessagesViewController {
         let message = messages[indexPath.item]
         
         if message.sid == senderId {
-            return outgoingBubbleImageView
+            return outgoingBubbleImageDataSource
         }
         
-        return incomingBubbleImageView
+        return incomingBubbleImageDataSource
     }
     
     // called from collectionViewCellForItemAtIndexPath

@@ -7,15 +7,12 @@
 //
 
 import UIKit
+import JSQMessagesViewController
 
 class MovieMessageCollectionViewCell: UICollectionViewCell {
     public static let cellReuseIdentifier = "MovieMessageCollectionViewCellIdentifier"
     public static let xibFileName = "MovieMessageCollectionViewCell"
     
-    @IBOutlet weak var avatarContainerView: UIView!
-    @IBOutlet weak var avatarContainerViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var avatarContainerViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var avatarImageView: UIImageView!
     
     @IBOutlet weak var messageBubbleContainerView: UIView!
     @IBOutlet weak var messageBubbleContainerWidthConstraint: NSLayoutConstraint!
@@ -29,6 +26,11 @@ class MovieMessageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var textViewMarginHorizontalSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var textViewTopVerticalSpaceConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var leftAvatarSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rightAvatarSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftAvatarImageView: UIImageView!
+    @IBOutlet weak var rightAvatarImageView: UIImageView!
+    
     
     var message: Message? {
         didSet {
@@ -36,6 +38,25 @@ class MovieMessageCollectionViewCell: UICollectionViewCell {
                 textView.text = movieModel.title
             }
         }
+    }
+    
+    func configureCellWith(avatarDataSource: JSQMessageAvatarImageDataSource?, bubbleImageDataSource: JSQMessageBubbleImageDataSource?, isIncomingMessage: Bool, topSpacing: CGFloat) {
+        
+        messageBubbleImageView.image = bubbleImageDataSource?.messageBubbleImage()
+        messageBubbleImageView.highlightedImage = bubbleImageDataSource?.messageBubbleHighlightedImage()
+        messageBubbleTopLabelHeightConstraint.constant = topSpacing
+        
+        let activeAvatarImageView = isIncomingMessage ? leftAvatarImageView : rightAvatarImageView
+        let passiveAvatarImageView = isIncomingMessage ? rightAvatarImageView : leftAvatarImageView
+        
+        passiveAvatarImageView?.isHidden = true
+        activeAvatarImageView?.image = avatarDataSource?.avatarImage()
+        activeAvatarImageView?.highlightedImage = avatarDataSource?.avatarHighlightedImage()
+        activeAvatarImageView?.isHidden = false
+        
+        leftAvatarSpacingConstraint.priority = isIncomingMessage ? 751 : 750
+        rightAvatarSpacingConstraint.priority = isIncomingMessage ? 750 : 751
+        
     }
     
     override func awakeFromNib() {
