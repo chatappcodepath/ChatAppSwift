@@ -19,7 +19,14 @@
 		3B2C797F9F79EAA1803ED47A /* Pods_FriendlyChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A8152DE7FC811CF1CC60AC /* Pods_FriendlyChatSwift.framework */; };
 		4C0076BE1DEA81AE00C8F767 /* PluginsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0076BC1DEA81AE00C8F767 /* PluginsViewController.swift */; };
 		4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0076BD1DEA81AE00C8F767 /* PluginsViewController.xib */; };
+		4C39CD5B1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39CD591DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift */; };
+		4C39CD5C1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C39CD5A1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.xib */; };
+		4C39CD5E1DF52EBB00473AA0 /* TicTacToePayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39CD5D1DF52EBB00473AA0 /* TicTacToePayload.swift */; };
+		4C39CD611DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39CD5F1DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.swift */; };
+		4C39CD621DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C39CD601DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.xib */; };
+		4C39CD641DF53D2800473AA0 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39CD631DF53D2800473AA0 /* MessageCollectionViewCell.swift */; };
 		4C547F3B1DE758A100A434CB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C547F3A1DE758A100A434CB /* Message.swift */; };
+		4C6AF7691DF4893300753626 /* MoviePayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AF7681DF4893300753626 /* MoviePayload.swift */; };
 		4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72D53B1DE8D68300B9F685 /* PushNotification.swift */; };
 		4CC6D6631DF140E3006F18FF /* CGRectExtensions.swif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */; };
 		4CC6D6641DF140E3006F18FF /* MultiPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6611DF140E3006F18FF /* MultiPageController.swift */; };
@@ -53,7 +60,14 @@
 		2CA807BD1B217B21009AD7F2 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		4C0076BC1DEA81AE00C8F767 /* PluginsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PluginsViewController.swift; path = ViewControllers/PluginsViewController.swift; sourceTree = "<group>"; };
 		4C0076BD1DEA81AE00C8F767 /* PluginsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PluginsViewController.xib; path = ViewControllers/PluginsViewController.xib; sourceTree = "<group>"; };
+		4C39CD591DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieMessageCollectionViewCell.swift; path = Plugins/MovieMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C39CD5A1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MovieMessageCollectionViewCell.xib; path = Plugins/MovieMessageCollectionViewCell.xib; sourceTree = "<group>"; };
+		4C39CD5D1DF52EBB00473AA0 /* TicTacToePayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TicTacToePayload.swift; path = Plugins/TicTacToePayload.swift; sourceTree = "<group>"; };
+		4C39CD5F1DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TicTacToeMessageCollectionViewCell.swift; path = Plugins/TicTacToeMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C39CD601DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TicTacToeMessageCollectionViewCell.xib; path = Plugins/TicTacToeMessageCollectionViewCell.xib; sourceTree = "<group>"; };
+		4C39CD631DF53D2800473AA0 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCollectionViewCell.swift; path = Plugins/MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4C547F3A1DE758A100A434CB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
+		4C6AF7681DF4893300753626 /* MoviePayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoviePayload.swift; path = Plugins/MoviePayload.swift; sourceTree = "<group>"; };
 		4C72D53B1DE8D68300B9F685 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushNotification.swift; path = Models/PushNotification.swift; sourceTree = "<group>"; };
 		4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGRectExtensions.swif.swift; path = MultiPageController/CGRectExtensions.swif.swift; sourceTree = "<group>"; };
 		4CC6D6611DF140E3006F18FF /* MultiPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPageController.swift; path = MultiPageController/MultiPageController.swift; sourceTree = "<group>"; };
@@ -103,6 +117,13 @@
 		4CC6D6661DF14133006F18FF /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				4C6AF7681DF4893300753626 /* MoviePayload.swift */,
+				4C39CD5D1DF52EBB00473AA0 /* TicTacToePayload.swift */,
+				4C39CD631DF53D2800473AA0 /* MessageCollectionViewCell.swift */,
+				4C39CD5F1DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.swift */,
+				4C39CD601DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.xib */,
+				4C39CD591DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift */,
+				4C39CD5A1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.xib */,
 				2103025F1DEACBA700DDBB2D /* MovieViewController.swift */,
 				210302601DEACBA700DDBB2D /* MovieViewController.xib */,
 				4CC6D6671DF14184006F18FF /* TicTacToeViewController.swift */,
@@ -289,9 +310,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CC6D66A1DF14184006F18FF /* TicTacToeViewController.xib in Resources */,
+				4C39CD5C1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.xib in Resources */,
 				4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */,
 				4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */,
 				4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */,
+				4C39CD621DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.xib in Resources */,
 				10D602891D5A2F9F004530C6 /* shared in Resources */,
 				210302661DEACBC400DDBB2D /* MovieCollectionCell.xib in Resources */,
 				4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */,
@@ -356,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				210302651DEACBC400DDBB2D /* MovieCollectionCell.swift in Sources */,
+				4C39CD641DF53D2800473AA0 /* MessageCollectionViewCell.swift in Sources */,
 				4CC6D6651DF140E3006F18FF /* ScrollView.swift in Sources */,
 				4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */,
 				4CDBF1021DE5EB480010D251 /* Group.swift in Sources */,
@@ -364,7 +388,9 @@
 				2CA807BE1B217B21009AD7F2 /* AppState.swift in Sources */,
 				4CC6D6691DF14184006F18FF /* TicTacToeViewController.swift in Sources */,
 				4CC6D6641DF140E3006F18FF /* MultiPageController.swift in Sources */,
+				4C6AF7691DF4893300753626 /* MoviePayload.swift in Sources */,
 				4CDBF10D1DE73C010010D251 /* GroupMessagesViewController.swift in Sources */,
+				4C39CD5E1DF52EBB00473AA0 /* TicTacToePayload.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				4CDBF1051DE5F19C0010D251 /* FirebaseUtils.swift in Sources */,
 				4CC6D6631DF140E3006F18FF /* CGRectExtensions.swif.swift in Sources */,
@@ -373,8 +399,10 @@
 				2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */,
 				210302611DEACBA700DDBB2D /* MovieViewController.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
+				4C39CD5B1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift in Sources */,
 				4CDBF0FE1DE56A3B0010D251 /* UserGroupsViewController.swift in Sources */,
 				4C0076BE1DEA81AE00C8F767 /* PluginsViewController.swift in Sources */,
+				4C39CD611DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

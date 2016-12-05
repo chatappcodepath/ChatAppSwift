@@ -7,8 +7,8 @@ class GroupMessagesViewController: JSQMessagesViewController {
 
     var messages = [Message]()
     var avatars = Dictionary<String, JSQMessagesAvatarImage>()
-    let outgoingBubbleImageView = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    let incomingBubbleImageView = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
+    let outgoingBubbleImageDataSource = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    let incomingBubbleImageDataSource = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
     var senderImageUrl: String!
     var batchMessages = true
     var ref: FIRDatabaseReference!
@@ -112,6 +112,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         }
         
         setupFirebase()
+        registerNibsForSpecialCells()
         showingAccessoryView = false
     }
     
@@ -124,6 +125,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         super.viewWillDisappear(animated)
         
     }
+    
     
     // ACTIONS
     
@@ -145,21 +147,79 @@ class GroupMessagesViewController: JSQMessagesViewController {
         print("Camera pressed!")
         showingAccessoryView = !showingAccessoryView!
     }
+}
+
+// for Plugins
+extension GroupMessagesViewController {
     
+    func registerNibsForSpecialCells() -> Void{
+        collectionView.register(UINib(nibName: MovieMessageCollectionViewCell.xibFileName, bundle: Bundle.main), forCellWithReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier)
+        collectionView.register(UINib(nibName: TicTacToeMessageCollectionViewCell.xibFileName, bundle:Bundle.main), forCellWithReuseIdentifier: TicTacToeMessageCollectionViewCell.cellReuseIdentifier)
+    }
+    
+    func sizeForSpecialMessage(_ message: Message, width: CGFloat) -> CGSize {
+        if (message.msgType == .Movie) {
+            return CGSize(width: width, height: 280)
+        }
+        return CGSize(width: width, height: 210)
+    }
+    
+    func collectionViewCellForSpecialMessage(_ message: Message, indexPath: IndexPath ) -> UICollectionViewCell {
+        var specialCell: UICollectionViewCell?;
+        if (message.msgType == .Movie) {
+            specialCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier , for: indexPath)
+        } else if (message.msgType == .TicTacToe){
+            specialCell = collectionView.dequeueReusableCell(withReuseIdentifier: TicTacToeMessageCollectionViewCell.cellReuseIdentifier, for: indexPath)
+        }
+        
+        if let specialCell = specialCell as? MessageCollectionViewCell {
+            specialCell.message = message
+            configureSpecialCell(cell: specialCell, indexPath: indexPath)
+            return specialCell
+        }
+        return super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+    }
+    
+    func configureSpecialCell(cell: MessageCollectionViewCell, indexPath: IndexPath ) -> Void {
+        let message = messages[indexPath.row]
+        let avatarDataSource = collectionView(collectionView, avatarImageDataForItemAt: indexPath)
+        let bubbleDataSource = collectionView(collectionView, messageBubbleImageDataForItemAt: indexPath)
+        let isIncomingMessage = message.sid != senderId
+        let topSpacing = heightForMessageBubbleTopLabelAt(indexPath: indexPath)
+        
+        cell.configureCellWith(avatarDataSource: avatarDataSource, bubbleImageDataSource: bubbleDataSource, isIncomingMessage: isIncomingMessage, topSpacing: topSpacing)
+    }
+}
+
+// CollectionView Delegates
+extension GroupMessagesViewController {
+    // needed for calculating height
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
     
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let message = messages[indexPath.row]
+        if (message.isSpecialMessage) {
+            let width = (collectionViewLayout as! JSQMessagesCollectionViewFlowLayout).itemWidth
+            return sizeForSpecialMessage(message, width: width)
+        }
+        
+        return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath);
+    }
+    
+    // called from collectionViewCellForItemAtIndexPath
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
         
         if message.sid == senderId {
-            return outgoingBubbleImageView
+            return outgoingBubbleImageDataSource
         }
         
-        return incomingBubbleImageView
+        return incomingBubbleImageDataSource
     }
-
+    
+    // called from collectionViewCellForItemAtIndexPath
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messages[indexPath.item]
         if let avatar = avatars[message.senderDisplayName()] {
@@ -174,10 +234,16 @@ class GroupMessagesViewController: JSQMessagesViewController {
         return messages.count
     }
     
+    // normal collectionView Delegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let message = messages[indexPath.item]
+        
+        if message.isSpecialMessage {
+            return collectionViewCellForSpecialMessage(message, indexPath: indexPath)
+        }
+        
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         
-        let message = messages[indexPath.item]
         if message.senderId() == sender.uid {
             cell.textView.textColor = UIColor.black
         } else {
@@ -209,8 +275,12 @@ class GroupMessagesViewController: JSQMessagesViewController {
         return NSAttributedString(string:message.name!)
     }
     
-    
+    // Top bubble height
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        return heightForMessageBubbleTopLabelAt(indexPath: indexPath)
+    }
+    
+    func heightForMessageBubbleTopLabelAt(indexPath: IndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
         
         // Sent by me, skip

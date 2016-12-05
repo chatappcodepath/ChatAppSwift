@@ -69,6 +69,7 @@ class FirebaseUtils: NSObject {
         newChild.setValue(messageToSend.messageDictionary)
         groupReference.child("lmSnippet").setValue(messageToSend.payLoad);
         groupReference.child("ts").setValue(messageToSend.tsMilliSec);
+        groupReference.child("messageType").setValue(messageToSend.msgType?.rawValue);
         notificationReference.childByAutoId().setValue(PushNotification.newPushNotificationFrom(message: messageToSend, group: group).pushNotifDictionary)
     }
 }
