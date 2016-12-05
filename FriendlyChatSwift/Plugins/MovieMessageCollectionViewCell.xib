@@ -9,10 +9,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="lHh-s3-PDB" customClass="MovieMessageCollectionViewCell" customModule="FriendlyChatSwift" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-ls-sdT" userLabel="Bubble top label" customClass="JSQMessagesLabel">
@@ -26,22 +26,19 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Te6-bP-uHq" userLabel="Bubble container">
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YVQ-AB-he5" userLabel="Bubble Image View"/>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbF-4i-ZcK">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6WA-eF-Mog" userLabel="Movie Image View"/>
                         </subviews>
                         <constraints>
                             <constraint firstItem="YVQ-AB-he5" firstAttribute="top" secondItem="Te6-bP-uHq" secondAttribute="top" id="3XS-xy-yY3"/>
-                            <constraint firstAttribute="trailing" secondItem="XbF-4i-ZcK" secondAttribute="trailing" constant="6" id="6Wc-UK-0M9"/>
+                            <constraint firstAttribute="trailing" secondItem="6WA-eF-Mog" secondAttribute="trailing" constant="5" id="6xP-Em-sbM"/>
+                            <constraint firstAttribute="bottom" secondItem="6WA-eF-Mog" secondAttribute="bottom" constant="5" id="9zd-ND-zQa"/>
                             <constraint firstItem="YVQ-AB-he5" firstAttribute="leading" secondItem="Te6-bP-uHq" secondAttribute="leading" id="AzC-2G-Ig2"/>
-                            <constraint firstItem="XbF-4i-ZcK" firstAttribute="leading" secondItem="Te6-bP-uHq" secondAttribute="leading" id="Hbd-PP-ZJw"/>
-                            <constraint firstAttribute="width" constant="244" id="RdF-7V-N57"/>
+                            <constraint firstItem="6WA-eF-Mog" firstAttribute="leading" secondItem="Te6-bP-uHq" secondAttribute="leading" constant="10" id="IR8-hr-epQ"/>
+                            <constraint firstAttribute="width" constant="210" id="RdF-7V-N57"/>
                             <constraint firstAttribute="bottom" secondItem="YVQ-AB-he5" secondAttribute="bottom" id="Saa-V0-FBJ"/>
-                            <constraint firstAttribute="bottom" secondItem="XbF-4i-ZcK" secondAttribute="bottom" id="eLP-uj-L3X"/>
+                            <constraint firstAttribute="height" constant="280" id="Xtb-Je-51D"/>
                             <constraint firstAttribute="trailing" secondItem="YVQ-AB-he5" secondAttribute="trailing" id="mfM-KU-g8P"/>
-                            <constraint firstItem="XbF-4i-ZcK" firstAttribute="top" secondItem="Te6-bP-uHq" secondAttribute="top" id="nrT-Uy-PNm"/>
-                            <constraint firstAttribute="bottom" secondItem="XbF-4i-ZcK" secondAttribute="bottom" id="qJG-dC-rr5"/>
+                            <constraint firstItem="6WA-eF-Mog" firstAttribute="top" secondItem="Te6-bP-uHq" secondAttribute="top" constant="5" id="sz3-UM-ozP"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dy7-jY-b2S" userLabel="Avatar container">
@@ -87,8 +84,10 @@
                 <constraint firstItem="xh8-ls-sdT" firstAttribute="leading" secondItem="lHh-s3-PDB" secondAttribute="leading" id="tZT-kH-naX"/>
                 <constraint firstAttribute="trailing" secondItem="xh8-ls-sdT" secondAttribute="trailing" id="wcW-PJ-fDU"/>
             </constraints>
-            <size key="customSize" width="317" height="245"/>
+            <size key="customSize" width="317" height="391"/>
             <connections>
+                <outlet property="contentLeadingConstraint" destination="IR8-hr-epQ" id="3PL-Jh-Cn9"/>
+                <outlet property="contentTrailingConstraint" destination="6xP-Em-sbM" id="7VU-yY-bXf"/>
                 <outlet property="leftAvatarImageView" destination="xO0-AZ-AEG" id="ufg-Xi-SYa"/>
                 <outlet property="leftAvatarSpacingConstraint" destination="6gJ-hT-Hl2" id="oaf-ve-PNB"/>
                 <outlet property="messageBubbleContainerView" destination="Te6-bP-uHq" id="zFG-vW-aiG"/>
@@ -96,15 +95,11 @@
                 <outlet property="messageBubbleImageView" destination="YVQ-AB-he5" id="BII-bI-3UQ"/>
                 <outlet property="messageBubbleTopLabel" destination="xh8-ls-sdT" id="BfF-yN-CsR"/>
                 <outlet property="messageBubbleTopLabelHeightConstraint" destination="ERf-Zg-Szw" id="LEe-vc-HZm"/>
+                <outlet property="movieImageView" destination="6WA-eF-Mog" id="dh2-Cr-0VE"/>
                 <outlet property="rightAvatarImageView" destination="DiL-ds-TJy" id="q94-FZ-IPq"/>
                 <outlet property="rightAvatarSpacingConstraint" destination="fpm-td-edP" id="bUV-ae-xh2"/>
-                <outlet property="textView" destination="XbF-4i-ZcK" id="Jke-qE-v05"/>
-                <outlet property="textViewAvatarHorizontalSpaceConstraint" destination="6Wc-UK-0M9" id="x6P-HU-wCY"/>
-                <outlet property="textViewBottomVerticalSpaceConstraint" destination="eLP-uj-L3X" id="lmR-DW-slz"/>
-                <outlet property="textViewMarginHorizontalSpaceConstraint" destination="Hbd-PP-ZJw" id="o8b-Hq-36Z"/>
-                <outlet property="textViewTopVerticalSpaceConstraint" destination="nrT-Uy-PNm" id="vPD-pP-idv"/>
             </connections>
-            <point key="canvasLocation" x="-66" y="55"/>
+            <point key="canvasLocation" x="-66" y="-18"/>
         </collectionViewCell>
     </objects>
 </document>
