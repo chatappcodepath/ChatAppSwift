@@ -92,7 +92,7 @@ class Message: NSObject {
     var messageDictionary: [String: Any] {
         var messageDictionary: [String : Any]  = [String: Any]()
         messageDictionary["isBotMessage"] = isBotMessage
-        messageDictionary["msgType"] = msgType
+        messageDictionary["msgType"] = msgType?.rawValue
         messageDictionary["name"] = name
         messageDictionary["mid"] = mid
         messageDictionary["payLoad"] = payLoad
