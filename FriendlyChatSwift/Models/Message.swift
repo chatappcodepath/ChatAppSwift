@@ -35,6 +35,8 @@ enum MessageType: String {
         switch messageType {
         case .Movie:
             return MoviePayload(jsonPayload: payload)
+        case .TicTacToe:
+            return TicTacToePayload(jsonPayload: payload)
         default:
             return payload
         }
