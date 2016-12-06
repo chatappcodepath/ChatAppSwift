@@ -31,6 +31,10 @@ class TicTacToeMessageCollectionViewCell: MessageCollectionViewCell {
         didSet {
             tictactoeModel = message?.parsedPayload as? TicTacToePayload
             if let tictactoeModel = tictactoeModel {
+                for tile in tiles! {
+                    tile.text = ""
+                }
+                
                 for move in tictactoeModel.moves! {
                     let moveTile = tiles?[move.position!]
                     moveTile?.text = move.move?.symbol()
@@ -52,7 +56,6 @@ class TicTacToeMessageCollectionViewCell: MessageCollectionViewCell {
         for tile in tiles! {
             gridView.layer.cornerRadius = 15.0
             gridView.clipsToBounds = true
-            tile.text = ""
             let tapGr = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
             tile.addGestureRecognizer(tapGr)
         }

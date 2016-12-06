@@ -14,6 +14,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     var ref: FIRDatabaseReference!
     var sender: FIRUser!
     fileprivate var _refHandle: FIRDatabaseHandle!
+    fileprivate var _modHandle: FIRDatabaseHandle!
     public var group: Group!
     var pluginsViewController: PluginsViewController?
     var showingAccessoryView: Bool? {
@@ -40,6 +41,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     
     deinit {
         messagesRef.removeObserver(withHandle: _refHandle)
+        messagesRef.removeObserver(withHandle: _modHandle)
     }
     
     func setupFirebase() {
@@ -53,6 +55,21 @@ class GroupMessagesViewController: JSQMessagesViewController {
             strongSelf.messages.append(Message(snapshot: snapshot))
             strongSelf.finishReceivingMessage()
         });
+        
+        _modHandle = messagesRef.observe(.childChanged, with: { [weak self] (snapshot) in
+            guard let strongSelf = self else {return}
+            
+            let newMessage = Message(snapshot: snapshot)
+            let newMessageMid = newMessage.mid
+            
+            for i in 0...strongSelf.messages.count-1 {
+                if (newMessageMid == strongSelf.messages[i].mid) {
+                    strongSelf.messages.remove(at: i)
+                    strongSelf.messages.append(newMessage)
+                    strongSelf.finishReceivingMessage()
+                }
+            }
+        })
     }
     
     func sendMessage(text: String!) {
