@@ -10,9 +10,13 @@ import UIKit
 
 class TicTacToeViewController: UIViewController {
 
+    var sendMessageDelegate : SendMessageProtocol?
+    @IBOutlet weak var newGameButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        newGameButton.layer.cornerRadius = 15
         // Do any additional setup after loading the view.
     }
 
@@ -20,8 +24,11 @@ class TicTacToeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    @IBAction func startNewGame() {
+        let newMessage = Message.newMessageWith(payload: TicTacToePayload.newGamePayload, messageType: .TicTacToe)
+        sendMessageDelegate?.sendMessage(newMessage)
+    }
     /*
     // MARK: - Navigation
 
