@@ -11,6 +11,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     let incomingBubbleImageDataSource = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
     var senderImageUrl: String!
     var batchMessages = true
+    var autoChatMode = false
     var ref: FIRDatabaseReference!
     var sender: FIRUser!
     fileprivate var _refHandle: FIRDatabaseHandle!
@@ -51,9 +52,9 @@ class GroupMessagesViewController: JSQMessagesViewController {
         // *** STEP 4: RECEIVE MESSAGES FROM FIREBASE (limited to latest 25 messages)
         _refHandle = messagesRef.queryOrdered(byChild: "ts").queryLimited(toLast: 25).observe(.childAdded , with: { [weak self] (snapshot) in
             guard let strongSelf = self else {return}
-            
-            strongSelf.messages.append(Message(snapshot: snapshot))
-            strongSelf.finishReceivingMessage()
+            let newMessage = Message(snapshot: snapshot)
+            strongSelf.messages.append(newMessage)
+            strongSelf.finishReceivingNewMessage(newMessage)
         });
         
         _modHandle = messagesRef.observe(.childChanged, with: { [weak self] (snapshot) in
@@ -66,7 +67,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
                 if (newMessageMid == strongSelf.messages[i].mid) {
                     strongSelf.messages.remove(at: i)
                     strongSelf.messages.append(newMessage)
-                    strongSelf.finishReceivingMessage()
+                    strongSelf.finishReceivingNewMessage(newMessage)
                 }
             }
         })
@@ -126,6 +127,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         setupFirebase()
         registerNibsForSpecialCells()
         showingAccessoryView = false
+        addLongTapGRForLeftButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -147,6 +149,13 @@ class GroupMessagesViewController: JSQMessagesViewController {
         scrollToBottom(animated: true)
     }
     
+    func toggleAutoMode(sender : UILongPressGestureRecognizer) {
+        if (sender.state == .began) {
+            autoChatMode = !autoChatMode
+            self.navigationItem.title = autoChatMode ? "Auto" : ""
+        }
+    }
+
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
@@ -157,6 +166,13 @@ class GroupMessagesViewController: JSQMessagesViewController {
     override func didPressAccessoryButton(_ sender: UIButton!) {
         print("Camera pressed!")
         showingAccessoryView = !showingAccessoryView!
+    }
+    
+    func finishReceivingNewMessage(_ newMessage: Message) {
+        super.finishReceivingMessage()
+        if (autoChatMode) {
+            AutoResponder.sharedInstance.sendMessageIfNeededWith(inputMessage: newMessage, messageSendingDelegate: self)
+        }
     }
 }
 
@@ -174,6 +190,12 @@ extension GroupMessagesViewController: SendMessageProtocol {
 
 // for Plugins
 extension GroupMessagesViewController {
+    
+    func addLongTapGRForLeftButton() {
+        let longTapGR = UILongPressGestureRecognizer(target: self, action: #selector(toggleAutoMode(sender:)))
+        self.inputToolbar.contentView.leftBarButtonItem.addGestureRecognizer(longTapGR)
+    }
+    
     
     func registerNibsForSpecialCells() -> Void{
         collectionView.register(UINib(nibName: MovieMessageCollectionViewCell.xibFileName, bundle: Bundle.main), forCellWithReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier)

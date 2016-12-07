@@ -221,6 +221,15 @@ struct TicTacToePayload {
         return TicTacToePayload.newGamePayload
     }
     
+    mutating func payloadWithAutoPlay(forSid sid:String) -> String? {
+        for i in 0..<currentTileStates.count {
+            if (currentTileStates[i] == .Empty) {
+                return payloadAfterTouchingTile(atPosition: i, sid: sid)
+            }
+        }
+        return nil
+    }
+    
     mutating func payloadAfterTouchingTile(atPosition position:Int, sid: String) -> String? {
         if (currentTileStates[position] != .Empty) {
             return nil

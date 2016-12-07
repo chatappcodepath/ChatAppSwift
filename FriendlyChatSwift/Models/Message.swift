@@ -121,21 +121,18 @@ class Message: NSObject {
         return newMessage;
     }
     
-    public static func newTextMessageWith(content: String) -> Message {
-        let newMessage = Message();
-        let currentUser = FirebaseUtils.sharedInstance.authUser;
-        
-        newMessage.isBotMessage = false
-        newMessage.msgType = .Text
-        newMessage.name = currentUser?.displayName
-        newMessage.payLoad = content
-        newMessage.photoUrl = currentUser?.photoURL?.absoluteString
-        newMessage.sid = currentUser?.uid
-        newMessage.ts = Date().timeIntervalSince1970
-        newMessage.msgHash = MessageIDCounter.sharedInstance.getCount()
-        
-        return newMessage;
+    public static func updatedMessageWith(payload:String, currentMessage: Message) -> Message {
+        if let currentUser = FirebaseUtils.sharedInstance.authUser {
+            currentMessage.payLoad = payload
+            currentMessage.sid = currentUser.uid
+            currentMessage.ts = Date().timeIntervalSince1970
+            currentMessage.name = currentUser.displayName
+            currentMessage.isBotMessage = false
+            currentMessage.photoUrl = currentUser.photoURL?.absoluteString
+        }
+        return currentMessage;
     }
+    
 }
 
 extension Message: JSQMessageData {

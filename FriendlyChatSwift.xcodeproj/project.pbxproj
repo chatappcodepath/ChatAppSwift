@@ -34,6 +34,8 @@
 		4CC6D6651DF140E3006F18FF /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6621DF140E3006F18FF /* ScrollView.swift */; };
 		4CC6D6691DF14184006F18FF /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6671DF14184006F18FF /* TicTacToeViewController.swift */; };
 		4CC6D66A1DF14184006F18FF /* TicTacToeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC6D6681DF14184006F18FF /* TicTacToeViewController.xib */; };
+		4CD407F91DF87E1B00B8283D /* AutoResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD407F81DF87E1B00B8283D /* AutoResponder.swift */; };
+		4CD407FB1DF87F9200B8283D /* eliza-min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4CD407FA1DF87F9200B8283D /* eliza-min.js */; };
 		4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF0F01DE41BF70010D251 /* GoogleService-Info.plist */; };
 		4CDBF0F91DE55CDF0010D251 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF0F71DE55CDF0010D251 /* LoginViewController.swift */; };
 		4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF0F81DE55CDF0010D251 /* LoginViewController.xib */; };
@@ -76,6 +78,8 @@
 		4CC6D6621DF140E3006F18FF /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollView.swift; path = MultiPageController/ScrollView.swift; sourceTree = "<group>"; };
 		4CC6D6671DF14184006F18FF /* TicTacToeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TicTacToeViewController.swift; path = Plugins/TicTacToeViewController.swift; sourceTree = "<group>"; };
 		4CC6D6681DF14184006F18FF /* TicTacToeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TicTacToeViewController.xib; path = Plugins/TicTacToeViewController.xib; sourceTree = "<group>"; };
+		4CD407F81DF87E1B00B8283D /* AutoResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoResponder.swift; sourceTree = "<group>"; };
+		4CD407FA1DF87F9200B8283D /* eliza-min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "eliza-min.js"; sourceTree = "<group>"; };
 		4CDBF0F01DE41BF70010D251 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CDBF0F21DE41F1F0010D251 /* FriendlyChatSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FriendlyChatSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		4CDBF0F71DE55CDF0010D251 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 		4CDBF1031DE5F1490010D251 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4CD407F81DF87E1B00B8283D /* AutoResponder.swift */,
+				4CD407FA1DF87F9200B8283D /* eliza-min.js */,
 				4C66E48D1DF713EB00F66B38 /* SendMessageProtocol.swift */,
 				4CDBF1041DE5F19C0010D251 /* FirebaseUtils.swift */,
 			);
@@ -313,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CC6D66A1DF14184006F18FF /* TicTacToeViewController.xib in Resources */,
+				4CD407FB1DF87F9200B8283D /* eliza-min.js in Resources */,
 				4C39CD5C1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.xib in Resources */,
 				4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */,
 				4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */,
@@ -401,6 +408,7 @@
 				4CDBF1091DE731410010D251 /* GroupsTableViewCell.swift in Sources */,
 				4C547F3B1DE758A100A434CB /* Message.swift in Sources */,
 				2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */,
+				4CD407F91DF87E1B00B8283D /* AutoResponder.swift in Sources */,
 				210302611DEACBA700DDBB2D /* MovieViewController.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				4C39CD5B1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift in Sources */,

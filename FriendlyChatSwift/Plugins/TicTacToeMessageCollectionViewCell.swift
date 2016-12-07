@@ -59,13 +59,8 @@ class TicTacToeMessageCollectionViewCell: MessageCollectionViewCell {
             let message = message,
             let currentUser = FirebaseUtils.sharedInstance.authUser {
             if let payload = tictactoeModel?.payloadAfterTouchingTile(atPosition: position, sid: currentUser.uid) {
-                message.payLoad = payload
-                message.sid = currentUser.uid
-                message.ts = Date().timeIntervalSince1970
-                message.name = currentUser.displayName
-                message.isBotMessage = false
-                message.photoUrl = currentUser.photoURL?.absoluteString
-                messageSendingDelegate?.updateMessage(message)
+                let updatedMessage = Message.updatedMessageWith(payload: payload, currentMessage: message)
+                messageSendingDelegate?.updateMessage(updatedMessage)
             }
         }
     }
