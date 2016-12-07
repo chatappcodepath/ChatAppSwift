@@ -59,14 +59,31 @@ class FirebaseUtils: NSObject {
         return ref.child(DBPaths.MESSAGES_FOR_GROUP.rawValue).child(group.id!)
     }
 
+    public func updateMessage(in group: Group, messageToSend: Message) -> Void {
+        guard let mid = messageToSend.mid else {
+            return
+        }
+        
+        let messageRef = groupMessageRefForGroup(group: group).child(mid)
+        messageRef.setValue(messageToSend.messageDictionary)
+        
+        updateGroupAndNotifications(in: group, messageToSend: messageToSend)
+    }
+    
     public func sendMessage(in group: Group, messageToSend: Message) -> Void {
-        let ref = FIRDatabase.database().reference()
         let messageRef = groupMessageRefForGroup(group: group)
-        let groupReference = ref.child(DBPaths.GROUPS.rawValue).child(group.id!)
-        let notificationReference = ref.child(DBPaths.NOTIFICATION_REQUEST_NODE.rawValue)
         let newChild = messageRef.childByAutoId()
         messageToSend.mid = newChild.key
         newChild.setValue(messageToSend.messageDictionary)
+        
+        updateGroupAndNotifications(in: group, messageToSend: messageToSend)
+    }
+    
+    private func updateGroupAndNotifications(in group: Group, messageToSend: Message) -> Void {
+        let ref = FIRDatabase.database().reference()
+
+        let groupReference = ref.child(DBPaths.GROUPS.rawValue).child(group.id!)
+        let notificationReference = ref.child(DBPaths.NOTIFICATION_REQUEST_NODE.rawValue)
         groupReference.child("lmSnippet").setValue(messageToSend.payLoad);
         groupReference.child("ts").setValue(messageToSend.tsMilliSec);
         groupReference.child("messageType").setValue(messageToSend.msgType?.rawValue);

@@ -14,6 +14,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     var ref: FIRDatabaseReference!
     var sender: FIRUser!
     fileprivate var _refHandle: FIRDatabaseHandle!
+    fileprivate var _modHandle: FIRDatabaseHandle!
     public var group: Group!
     var pluginsViewController: PluginsViewController?
     var showingAccessoryView: Bool? {
@@ -40,6 +41,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     
     deinit {
         messagesRef.removeObserver(withHandle: _refHandle)
+        messagesRef.removeObserver(withHandle: _modHandle)
     }
     
     func setupFirebase() {
@@ -53,11 +55,21 @@ class GroupMessagesViewController: JSQMessagesViewController {
             strongSelf.messages.append(Message(snapshot: snapshot))
             strongSelf.finishReceivingMessage()
         });
-    }
-    
-    func sendMessage(text: String!) {
-        // *** STEP 3: ADD A MESSAGE TO FIREBASE
-        FirebaseUtils.sharedInstance.sendMessage(in: group, messageToSend: Message.newTextMessageWith(content: text))
+        
+        _modHandle = messagesRef.observe(.childChanged, with: { [weak self] (snapshot) in
+            guard let strongSelf = self else {return}
+            
+            let newMessage = Message(snapshot: snapshot)
+            let newMessageMid = newMessage.mid
+            
+            for i in 0...strongSelf.messages.count-1 {
+                if (newMessageMid == strongSelf.messages[i].mid) {
+                    strongSelf.messages.remove(at: i)
+                    strongSelf.messages.append(newMessage)
+                    strongSelf.finishReceivingMessage()
+                }
+            }
+        })
     }
     
     func setupAvatarImage(name: String, imageUrl: String?, incoming: Bool) {
@@ -138,8 +150,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        sendMessage(text: text)
-        
+        sendMessage(Message.newTextMessageWith(content: text))
         finishSendingMessage()
     }
     
@@ -147,6 +158,18 @@ class GroupMessagesViewController: JSQMessagesViewController {
         print("Camera pressed!")
         showingAccessoryView = !showingAccessoryView!
     }
+}
+
+extension GroupMessagesViewController: SendMessageProtocol {
+    func sendMessage(_ message: Message) {
+        // *** STEP 3: ADD A MESSAGE TO FIREBASE
+        FirebaseUtils.sharedInstance.sendMessage(in: group, messageToSend: message)
+    }
+    
+    func updateMessage(_ message: Message) {
+        FirebaseUtils.sharedInstance.updateMessage(in: group, messageToSend: message)
+    }
+    
 }
 
 // for Plugins
@@ -174,6 +197,7 @@ extension GroupMessagesViewController {
         
         if let specialCell = specialCell as? MessageCollectionViewCell {
             specialCell.message = message
+            specialCell.messageSendingDelegate = self
             configureSpecialCell(cell: specialCell, indexPath: indexPath)
             return specialCell
         }

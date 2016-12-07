@@ -25,6 +25,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rightAvatarImageView: UIImageView!
     
     var message: Message?
+    var messageSendingDelegate: SendMessageProtocol?
     
     func configureCellWith(avatarDataSource: JSQMessageAvatarImageDataSource?, bubbleImageDataSource: JSQMessageBubbleImageDataSource?, isIncomingMessage: Bool, topSpacing: CGFloat) {
         

@@ -23,6 +23,7 @@ class TicTacToeMessageCollectionViewCell: MessageCollectionViewCell {
     @IBOutlet weak var tile7: UILabel!
     @IBOutlet weak var tile8: UILabel!
     @IBOutlet weak var gridView: UIView!
+    @IBOutlet weak var resultLabel: UILabel!
     
     var tiles:[UILabel]?
     var tictactoeModel: TicTacToePayload?
@@ -30,19 +31,43 @@ class TicTacToeMessageCollectionViewCell: MessageCollectionViewCell {
     override var message: Message? {
         didSet {
             tictactoeModel = message?.parsedPayload as? TicTacToePayload
-            if let tictactoeModel = tictactoeModel {
-                for move in tictactoeModel.moves! {
-                    let moveTile = tiles?[move.position!]
-                    moveTile?.text = move.move?.symbol()
+            if let tictactoeModel = tictactoeModel,
+               let sid = FirebaseUtils.sharedInstance.authUser?.uid {
+                for i in 0..<tictactoeModel.currentTileStates.count {
+                    tiles?[i].text = tictactoeModel.currentTileStates[i].symbol()
+                }
+                if let resultString = tictactoeModel.getGameResult(sid: sid).description {
+                    resultLabel.text = resultString
+                    resultLabel.isHidden = false
+                } else {
+                    resultLabel.isHidden = true
                 }
             }
         }
     }
     
+    private func positionOfTile(tile: UILabel?) -> Int? {
+        for i in 0..<tiles!.count {
+            if (tile == tiles?[i]) { return i }
+        }
+        return nil
+    }
+    
     func handleTap(recognizer: UITapGestureRecognizer) {
         let tile =  recognizer.view as? UILabel
-        tile?.text = MoveType.cross.symbol()
-        print ("KEVINDEBUG I am touched \(self.message?.payLoad)")
+        if let position = positionOfTile(tile: tile),
+            let message = message,
+            let currentUser = FirebaseUtils.sharedInstance.authUser {
+            if let payload = tictactoeModel?.payloadAfterTouchingTile(atPosition: position, sid: currentUser.uid) {
+                message.payLoad = payload
+                message.sid = currentUser.uid
+                message.ts = Date().timeIntervalSince1970
+                message.name = currentUser.displayName
+                message.isBotMessage = false
+                message.photoUrl = currentUser.photoURL?.absoluteString
+                messageSendingDelegate?.updateMessage(message)
+            }
+        }
     }
     
     override func awakeFromNib() {
@@ -52,7 +77,6 @@ class TicTacToeMessageCollectionViewCell: MessageCollectionViewCell {
         for tile in tiles! {
             gridView.layer.cornerRadius = 15.0
             gridView.clipsToBounds = true
-            tile.text = ""
             let tapGr = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
             tile.addGestureRecognizer(tapGr)
         }
