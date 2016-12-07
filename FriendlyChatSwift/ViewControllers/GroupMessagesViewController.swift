@@ -72,11 +72,6 @@ class GroupMessagesViewController: JSQMessagesViewController {
         })
     }
     
-    func sendMessage(text: String!) {
-        // *** STEP 3: ADD A MESSAGE TO FIREBASE
-        FirebaseUtils.sharedInstance.sendMessage(in: group, messageToSend: Message.newTextMessageWith(content: text))
-    }
-    
     func setupAvatarImage(name: String, imageUrl: String?, incoming: Bool) {
         if let stringUrl = imageUrl {
             if let url = URL(string: stringUrl) {
@@ -155,8 +150,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        sendMessage(text: text)
-        
+        sendMessage(Message.newTextMessageWith(content: text))
         finishSendingMessage()
     }
     
@@ -164,6 +158,18 @@ class GroupMessagesViewController: JSQMessagesViewController {
         print("Camera pressed!")
         showingAccessoryView = !showingAccessoryView!
     }
+}
+
+extension GroupMessagesViewController: SendMessageProtocol {
+    func sendMessage(_ message: Message) {
+        // *** STEP 3: ADD A MESSAGE TO FIREBASE
+        FirebaseUtils.sharedInstance.sendMessage(in: group, messageToSend: message)
+    }
+    
+    func updateMessage(_ message: Message) {
+        FirebaseUtils.sharedInstance.updateMessage(in: group, messageToSend: message)
+    }
+    
 }
 
 // for Plugins
@@ -191,6 +197,7 @@ extension GroupMessagesViewController {
         
         if let specialCell = specialCell as? MessageCollectionViewCell {
             specialCell.message = message
+            specialCell.messageSendingDelegate = self
             configureSpecialCell(cell: specialCell, indexPath: indexPath)
             return specialCell
         }

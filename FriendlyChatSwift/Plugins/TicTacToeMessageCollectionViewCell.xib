@@ -102,13 +102,22 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </stackView>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14b-Hi-UMi">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="14b-Hi-UMi" secondAttribute="bottom" id="4DB-Fl-j1t"/>
+                                    <constraint firstItem="14b-Hi-UMi" firstAttribute="leading" secondItem="Fww-9K-Fvf" secondAttribute="leading" id="67M-Gw-pZ0"/>
                                     <constraint firstAttribute="bottom" secondItem="6jY-rj-uUi" secondAttribute="bottom" id="HhL-KK-gDR"/>
                                     <constraint firstAttribute="trailing" secondItem="6jY-rj-uUi" secondAttribute="trailing" id="VsU-cR-Zx1"/>
                                     <constraint firstItem="6jY-rj-uUi" firstAttribute="leading" secondItem="Fww-9K-Fvf" secondAttribute="leading" id="Z9e-bG-FxC"/>
                                     <constraint firstItem="6jY-rj-uUi" firstAttribute="top" secondItem="Fww-9K-Fvf" secondAttribute="top" id="kpc-39-HXU"/>
+                                    <constraint firstAttribute="trailing" secondItem="14b-Hi-UMi" secondAttribute="trailing" id="oj9-9D-2Ka"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -179,6 +188,7 @@
                 <outlet property="messageBubbleImageView" destination="BY0-p7-qy1" id="DgP-qi-uXx"/>
                 <outlet property="messageBubbleTopLabel" destination="4nB-ca-Sgt" id="53m-s8-19c"/>
                 <outlet property="messageBubbleTopLabelHeightConstraint" destination="5jJ-9Z-o2T" id="O14-2O-21q"/>
+                <outlet property="resultLabel" destination="14b-Hi-UMi" id="Abu-UW-d3Q"/>
                 <outlet property="rightAvatarImageView" destination="ZOa-hn-cwK" id="DIv-ma-UcF"/>
                 <outlet property="rightAvatarSpacingConstraint" destination="1b2-Ts-E7e" id="ERV-m4-dsH"/>
                 <outlet property="tile0" destination="qSZ-6A-tTj" id="EdK-FG-N4r"/>
