@@ -13,12 +13,9 @@ class MovieCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var moveThumbnailView: UIImageView!
         
-    public var movie: NSDictionary? {
+    public var movie: MoviePayload? {
         didSet {
-            let title = movie?["title"] as! String
-            print("Title ---------------------->  \(title)")
-                    
-            if let posterPath = movie?["poster_path"] as? String {
+            if let posterPath = movie?.poster_path {
                 let baseUrl = "http://image.tmdb.org/t/p/w500"
                 let imageUrl:URL! = URL(string: baseUrl + posterPath)
                 //cell.posterImageView.setImageWith(imageUrl!)
@@ -40,10 +37,9 @@ class MovieCollectionCell: UICollectionViewCell {
                         print("image fetch error \(error.localizedDescription)")
                 })
             }
-
-
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

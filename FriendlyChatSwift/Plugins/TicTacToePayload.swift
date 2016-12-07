@@ -91,6 +91,7 @@ struct TicTacToePayload {
     private var xSids: Set<String>
     private var oSids: Set<String>
     private(set) var currentTileStates: [TileState]
+    static var newGamePayload = "[]"
     
     init(jsonPayload:String) {
         moves = [Move]()
@@ -203,8 +204,8 @@ struct TicTacToePayload {
     var jsonPayload:String {
         var movesDictionary = [[String: Any]]()
 
-        guard let moves = moves else {return "[]"}
-        if moves.count == 0  {return "[]"}
+        guard let moves = moves else {return TicTacToePayload.newGamePayload}
+        if moves.count == 0  {return TicTacToePayload.newGamePayload}
         
         for move in moves {
             if let moveDictionary = move.dictionary {
@@ -217,7 +218,7 @@ struct TicTacToePayload {
             }
         }
         
-        return "[]"
+        return TicTacToePayload.newGamePayload
     }
     
     mutating func payloadAfterTouchingTile(atPosition position:Int, sid: String) -> String? {

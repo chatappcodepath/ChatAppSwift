@@ -12,7 +12,8 @@ import AFNetworking
 class MovieViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var movieCollectionView: UICollectionView!
-    var movies: [NSDictionary]?
+    var movies: [MoviePayload]?
+    var sendMessageDelegate : SendMessageProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,13 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
         cell.movie = movies![indexPath.row]        
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let moviePayload = movies?[indexPath.row].payload {
+            let newMessage = Message.newMessageWith(payload: moviePayload, messageType: .Movie)
+            sendMessageDelegate?.sendMessage(newMessage)
+        }
+    }
 
     func performNetworkRequest() {
         //TODO MOVE to client file
@@ -61,7 +69,9 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
             delegateQueue:OperationQueue.main
         )
         
-        let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: { (dataOrNil, response, error) in
+        let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: {[weak self] (dataOrNil, response, error) in
+            
+            guard let strongSelf = self else {return}
             
             if ((error) != nil) {
                 print("There was a network error")
@@ -69,9 +79,11 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
             }
             
             if let data = dataOrNil {
-                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                    self.movies = responseDictionary["results"] as? [NSDictionary]                
-                    self.movieCollectionView.reloadData()
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? [String: Any] {
+                    if let jsonArray = responseDictionary["results"] as? [[String: Any]] {
+                        strongSelf.movies = MoviePayload.moviesFromJSONArray(jsonArray)
+                    }
+                    strongSelf.movieCollectionView.reloadData()
                 }
             } else {
                 print("There was an error")

@@ -105,6 +105,22 @@ class Message: NSObject {
         return messageDictionary;
     }
     
+    public static func newMessageWith(payload:String, messageType: MessageType) -> Message {
+        let newMessage = Message();
+        let currentUser = FirebaseUtils.sharedInstance.authUser;
+        
+        newMessage.isBotMessage = false
+        newMessage.msgType = messageType
+        newMessage.name = currentUser?.displayName
+        newMessage.payLoad = payload
+        newMessage.photoUrl = currentUser?.photoURL?.absoluteString
+        newMessage.sid = currentUser?.uid
+        newMessage.ts = Date().timeIntervalSince1970
+        newMessage.msgHash = MessageIDCounter.sharedInstance.getCount()
+        
+        return newMessage;
+    }
+    
     public static func newTextMessageWith(content: String) -> Message {
         let newMessage = Message();
         let currentUser = FirebaseUtils.sharedInstance.authUser;

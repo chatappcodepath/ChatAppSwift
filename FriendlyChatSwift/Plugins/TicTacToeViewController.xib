@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TicTacToeViewController" customModule="FriendlyChatSwift" customModuleProvider="target">
             <connections>
+                <outlet property="newGameButton" destination="eWg-LQ-t8e" id="1fU-2c-R7K"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,23 +17,32 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SGX-xZ-ZJh">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="SGX-xZ-ZJh">
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wanna play a game Tic Tac Toe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvY-qy-T7Y">
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wanna play a game Tic Tac Toe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvY-qy-T7Y">
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-LQ-t8e">
-                            <state key="normal" title="Start a New Game"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" title="Start a New Game">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="startNewGame" destination="-1" eventType="touchUpInside" id="AC7-o7-LfH"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.81502503449999997" green="0.81502503449999997" blue="0.81502503449999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="SGX-xZ-ZJh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jVp-ae-Bwf"/>
-                <constraint firstItem="SGX-xZ-ZJh" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="utr-l1-gBk"/>
+                <constraint firstAttribute="trailing" secondItem="SGX-xZ-ZJh" secondAttribute="trailing" id="Ccw-YY-CKx"/>
+                <constraint firstItem="SGX-xZ-ZJh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TKb-Rz-7Mj"/>
+                <constraint firstItem="SGX-xZ-ZJh" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="tC8-we-ySg"/>
             </constraints>
         </view>
     </objects>

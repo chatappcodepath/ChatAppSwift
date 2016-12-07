@@ -22,7 +22,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
             var auxViewHeight:CGFloat = 0;
             if (showingAccessoryView)! {
                 auxViewHeight = 250;
-                pluginsViewController = PluginsViewController(nibName: "PluginsViewController", bundle: Bundle.main)
+                pluginsViewController = PluginsViewController(nibName: "PluginsViewController", bundle: Bundle.main, sendMessageDelegate: self)
                 self.addChildViewController(pluginsViewController!)
                 self.view.addSubview((pluginsViewController?.view)!)
                 pluginsViewController?.view.frame = CGRect(x: 0, y: self.view.frame.height - auxViewHeight, width: self.view.frame.width, height: auxViewHeight)
@@ -150,7 +150,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        sendMessage(Message.newTextMessageWith(content: text))
+        sendMessage(Message.newMessageWith(payload: text, messageType: .Text))
         finishSendingMessage()
     }
     
