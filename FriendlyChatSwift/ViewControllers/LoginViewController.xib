@@ -17,9 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friendly Chat App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dV-bw-hpG">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LZ Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dV-bw-hpG">
                     <fontDescription key="fontDescription" type="system" pointSize="39"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-6I-SnY" customClass="GIDSignInButton">
@@ -29,14 +29,14 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.55617094990000004" green="0.68707390479999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="2dV-bw-hpG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="5h5-D9-R4d"/>
-                <constraint firstAttribute="trailing" secondItem="CfB-6I-SnY" secondAttribute="trailing" id="AGO-wG-h1h"/>
+                <constraint firstItem="2dV-bw-hpG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="5h5-D9-R4d"/>
+                <constraint firstAttribute="trailing" secondItem="CfB-6I-SnY" secondAttribute="trailing" constant="130" id="AGO-wG-h1h"/>
                 <constraint firstItem="CfB-6I-SnY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="N1N-oS-kjb"/>
                 <constraint firstItem="2dV-bw-hpG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="UPl-RV-u7x"/>
                 <constraint firstAttribute="trailing" secondItem="2dV-bw-hpG" secondAttribute="trailing" constant="16" id="jkW-Q9-JYm"/>
-                <constraint firstItem="CfB-6I-SnY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uTO-Po-q4g"/>
+                <constraint firstItem="CfB-6I-SnY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="130" id="uTO-Po-q4g"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="161.5"/>
         </view>
