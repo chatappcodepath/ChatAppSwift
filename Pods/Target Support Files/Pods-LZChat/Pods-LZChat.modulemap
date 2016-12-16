@@ -1,0 +1,6 @@
+framework module Pods_LZChat {
+  umbrella header "Pods-LZChat-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,4 +1,4 @@
-# FriendlyChat Codelab
+# LZChat
 
 use_frameworks!
 platform :ios, '7.0'
@@ -13,5 +13,5 @@ pod 'GoogleSignIn'
 pod 'JSQMessagesViewController'
 pod 'AFNetworking', '~> 3.0'
 
-target 'FriendlyChatSwift' do
+target 'LZChat' do
 end
