@@ -18,6 +18,7 @@ import UIKit
 
 import Firebase
 import UserNotifications
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -27,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
       launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FIRApp.configure()
-//    NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification(_:)), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
-
     GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
     window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -90,14 +89,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
 }
 
-extension AppDelegate {
+extension AppDelegate : UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     func registerForNotifications(application:UIApplication) {
+        NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification(_:)), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
+        
         if #available(iOS 10.0, *) {
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { (isGranted, error) in
                 if (isGranted) {
                     print("Kevin User Granted permission")
                 }
+                UNUserNotificationCenter.current().delegate = self
+                FIRMessaging.messaging().remoteMessageDelegate = self
             })
         } else {
             let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -107,16 +110,21 @@ extension AppDelegate {
         application.registerForRemoteNotifications()
     }
     
+    func tokenRefreshNotification(_ notification: Notification) {
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            print("Token is refreshed add it to your DB")
+        }
+    }
+    
+    // Needed only for debugging
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        var token = String(data: deviceToken.base64EncodedData(), encoding: .utf8)?.trimmingCharacters(in: CharacterSet.whitespaces).trimmingCharacters(in: CharacterSet(charactersIn: "<>"))
-//        print("Kevin got the device Token \(token)");
-        
         var token: String = ""
         for i in 0..<deviceToken.count {
             token += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
         }
         
-        print(token)
+        print("Kevin device token is \(token) ")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
@@ -128,55 +136,21 @@ extension AppDelegate {
         completionHandler(.newData)
     }
     
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("userNotificationCenter did receive response")
+        completionHandler()
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("Kevin userNotificationCenter will present notification")
+        completionHandler(.alert)
+    }
+    
+    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        print("Kevin got the remote message from firebase for iOS-10")
+    }
+    
 }
-
-/*
-// All notifications related stuff
-extension AppDelegate {
-    func registerForRemoteNotifications(_ application:UIApplication) {
-        if #available(iOS 10.0, *) {
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-            
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            // For iOS 10 data message (sent via FCM)
-            //            FIRMessaging.messaging().remoteMessageDelegate = self
-            
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
-        application.registerForRemoteNotifications()
-    }
-    
-    func tokenRefreshNotification(_ notification: Notification) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
-            print("InstanceID token: \(refreshedToken)")
-        }
-        
-        // Connect to FCM since connection may have failed when attempted before having a token.
-        registerForRemoteNotifications()
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // Print full message.
-        print(userInfo)
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        // Print full message.
-        print(userInfo)
-    }
-}
-*/
