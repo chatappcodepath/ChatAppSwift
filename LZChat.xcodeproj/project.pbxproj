@@ -94,6 +94,7 @@
 		4CDBF10B1DE73C010010D251 /* GroupMessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMessagesViewController.swift; path = ../LZChat/ViewControllers/GroupMessagesViewController.swift; sourceTree = "<group>"; };
 		4CECBCA71E03B980004A7562 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = shared/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		4CECBCA81E03B980004A7562 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = shared/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		4CECBCAB1E03C684004A7562 /* LZChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LZChat.entitlements; sourceTree = "<group>"; };
 		5F5A53791ADE67D500F81DF0 /* LZChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LZChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../LZChat/AppDelegate.swift; sourceTree = "<group>"; };
 		9AFD1539501FC1BD726444A9 /* Pods-LZChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LZChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-LZChat/Pods-LZChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +209,7 @@
 		5F5A537A1ADE67D500F81DF0 /* LZChat */ = {
 			isa = PBXGroup;
 			children = (
+				4CECBCAB1E03C684004A7562 /* LZChat.entitlements */,
 				4CC6D6661DF14133006F18FF /* Plugins */,
 				4CC6D6591DF13031006F18FF /* MultiPageController */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
@@ -292,6 +294,9 @@
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -517,12 +522,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = LZChat/LZChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 66B39E622U;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LZChat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lzchat.LZChat;
 				PRODUCT_NAME = LZChat;
@@ -540,12 +546,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = LZChat/LZChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 66B39E622U;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/LZChat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lzchat.LZChat;
 				PRODUCT_NAME = LZChat;
