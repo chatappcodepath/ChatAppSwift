@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10D602891D5A2F9F004530C6 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 10D602881D5A2F9F004530C6 /* shared */; };
 		210302611DEACBA700DDBB2D /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2103025F1DEACBA700DDBB2D /* MovieViewController.swift */; };
 		210302621DEACBA700DDBB2D /* MovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210302601DEACBA700DDBB2D /* MovieViewController.xib */; };
 		210302651DEACBC400DDBB2D /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210302631DEACBC400DDBB2D /* MovieCollectionCell.swift */; };
@@ -45,6 +44,8 @@
 		4CDBF1091DE731410010D251 /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */; };
 		4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */; };
 		4CDBF10D1DE73C010010D251 /* GroupMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBF10B1DE73C010010D251 /* GroupMessagesViewController.swift */; };
+		4CECBCA91E03B980004A7562 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CECBCA71E03B980004A7562 /* Images.xcassets */; };
+		4CECBCAA1E03B980004A7562 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CECBCA81E03B980004A7562 /* LaunchScreen.xib */; };
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		AB41A475FE94B1BCBFEC877F /* Pods_LZChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D609ACE247E4C3C4E0023BF1 /* Pods_LZChat.framework */; };
 /* End PBXBuildFile section */
@@ -52,7 +53,6 @@
 /* Begin PBXFileReference section */
 		1037935F1BF4256400C88958 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Pods/Firebase/Headers/module.modulemap; sourceTree = "<group>"; };
 		107960741C61253B003DB6CC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../LZChat/Info.plist; sourceTree = "<group>"; };
-		10D602881D5A2F9F004530C6 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
 		2103025F1DEACBA700DDBB2D /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieViewController.swift; path = ../LZChat/Plugins/MovieViewController.swift; sourceTree = "<group>"; };
 		210302601DEACBA700DDBB2D /* MovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MovieViewController.xib; path = ../LZChat/Plugins/MovieViewController.xib; sourceTree = "<group>"; };
 		210302631DEACBC400DDBB2D /* MovieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieCollectionCell.swift; path = ../LZChat/Views/MovieCollectionCell.swift; sourceTree = "<group>"; };
@@ -92,6 +92,8 @@
 		4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupsTableViewCell.swift; path = ../LZChat/Views/GroupsTableViewCell.swift; sourceTree = "<group>"; };
 		4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GroupsTableViewCell.xib; path = ../LZChat/Views/GroupsTableViewCell.xib; sourceTree = "<group>"; };
 		4CDBF10B1DE73C010010D251 /* GroupMessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupMessagesViewController.swift; path = ../LZChat/ViewControllers/GroupMessagesViewController.swift; sourceTree = "<group>"; };
+		4CECBCA71E03B980004A7562 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = shared/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		4CECBCA81E03B980004A7562 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = shared/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		5F5A53791ADE67D500F81DF0 /* LZChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LZChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../LZChat/AppDelegate.swift; sourceTree = "<group>"; };
 		9AFD1539501FC1BD726444A9 /* Pods-LZChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LZChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-LZChat/Pods-LZChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				4CDBF0F01DE41BF70010D251 /* GoogleService-Info.plist */,
-				10D602881D5A2F9F004530C6 /* shared */,
 				5F5A537A1ADE67D500F81DF0 /* LZChat */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				AD1F1C80A93A096F652504F5 /* Frameworks */,
@@ -220,13 +221,14 @@
 				2C595F041B34B73A00355AE7 /* Constants.swift */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
 			);
-			name = LZChat;
 			path = LZChat;
 			sourceTree = "<group>";
 		};
 		5F5A537B1ADE67D500F81DF0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CECBCA71E03B980004A7562 /* Images.xcassets */,
+				4CECBCA81E03B980004A7562 /* LaunchScreen.xib */,
 				4CDBF0F21DE41F1F0010D251 /* LZChat-Bridging-Header.h */,
 				107960741C61253B003DB6CC /* Info.plist */,
 			);
@@ -326,9 +328,10 @@
 				4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */,
 				4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */,
 				4C39CD621DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.xib in Resources */,
-				10D602891D5A2F9F004530C6 /* shared in Resources */,
 				210302661DEACBC400DDBB2D /* MovieCollectionCell.xib in Resources */,
 				4CDBF0F11DE41BF70010D251 /* GoogleService-Info.plist in Resources */,
+				4CECBCAA1E03B980004A7562 /* LaunchScreen.xib in Resources */,
+				4CECBCA91E03B980004A7562 /* Images.xcassets in Resources */,
 				4CDBF0FF1DE56A3B0010D251 /* UserGroupsViewController.xib in Resources */,
 				210302621DEACBA700DDBB2D /* MovieViewController.xib in Resources */,
 			);
