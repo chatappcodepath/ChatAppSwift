@@ -21,28 +21,29 @@ import UserNotifications
 import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-
-  var window: UIWindow?
-
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions
-      launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    FIRApp.configure()
-    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-    GIDSignIn.sharedInstance().delegate = self
-    window = UIWindow.init(frame: UIScreen.main.bounds)
-    let rootVC = LoginViewController()
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    registerForNotifications(application: application)
+    var window: UIWindow?
     
-    if let currentUser = GIDSignIn.sharedInstance().currentUser {
-        signInWithCurrentUser(user: currentUser)
-    } else {
-        window?.rootViewController = rootVC;
-        window?.makeKeyAndVisible()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions
+        launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FIRApp.configure()
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        window = UIWindow.init(frame: UIScreen.main.bounds)
+        
+        registerForNotifications(application: application)
+        
+        GIDSignIn.sharedInstance().signInSilently()
+        
+        if let currentUser = GIDSignIn.sharedInstance().currentUser {
+            signInWithCurrentUser(user: currentUser)
+        } else {
+            window?.rootViewController = LoginViewController();
+            window?.makeKeyAndVisible()
+        }
+        return true
     }
-    return true
-  }
     
     func signInWithCurrentUser(user: GIDGoogleUser) {
         let authentication = user.authentication
@@ -63,7 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
         }
     }
+}
 
+extension AppDelegate: GIDSignInDelegate {
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
         if let error = error {
@@ -72,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
         signInWithCurrentUser(user: user)
     }
-
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         if #available(iOS 9.0, *) {
             return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -85,6 +89,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
         try! FIRAuth.auth()!.signOut()
+    }
+    
+    func signOut() {
+        try! FIRAuth.auth()?.signOut()
+        GIDSignIn.sharedInstance().signOut()
+        GIDSignIn.sharedInstance().disconnect()
+        AppState.sharedInstance.signedIn = false
+        window?.rootViewController = LoginViewController()
     }
     
 }

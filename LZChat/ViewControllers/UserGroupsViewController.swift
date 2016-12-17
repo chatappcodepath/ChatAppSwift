@@ -10,6 +10,7 @@
 // 
 
 import UIKit
+import Firebase
 
 class UserGroupsViewController: UIViewController {
 
@@ -46,7 +47,9 @@ class UserGroupsViewController: UIViewController {
     }
     
     func signOutCurrentUser() {
-        print("TODO : signout current user");
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.signOut()
+        }
     }
 
 }
