@@ -26,6 +26,7 @@
 		4C547F3B1DE758A100A434CB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C547F3A1DE758A100A434CB /* Message.swift */; };
 		4C66E48E1DF713EB00F66B38 /* SendMessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C66E48D1DF713EB00F66B38 /* SendMessageProtocol.swift */; };
 		4C6AF7691DF4893300753626 /* MoviePayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AF7681DF4893300753626 /* MoviePayload.swift */; };
+		4C71F0021E064B0C004D6BA6 /* LZUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71F0011E064B0C004D6BA6 /* LZUser.swift */; };
 		4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72D53B1DE8D68300B9F685 /* PushNotification.swift */; };
 		4CC6D6631DF140E3006F18FF /* CGRectExtensions.swif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */; };
 		4CC6D6641DF140E3006F18FF /* MultiPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6611DF140E3006F18FF /* MultiPageController.swift */; };
@@ -73,6 +74,7 @@
 		4C547F3A1DE758A100A434CB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = ../LZChat/Models/Message.swift; sourceTree = "<group>"; };
 		4C66E48D1DF713EB00F66B38 /* SendMessageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SendMessageProtocol.swift; path = ../LZChat/SendMessageProtocol.swift; sourceTree = "<group>"; };
 		4C6AF7681DF4893300753626 /* MoviePayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoviePayload.swift; path = ../LZChat/Plugins/MoviePayload.swift; sourceTree = "<group>"; };
+		4C71F0011E064B0C004D6BA6 /* LZUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LZUser.swift; path = Models/LZUser.swift; sourceTree = "<group>"; };
 		4C72D53B1DE8D68300B9F685 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushNotification.swift; path = ../LZChat/Models/PushNotification.swift; sourceTree = "<group>"; };
 		4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGRectExtensions.swif.swift; path = ../LZChat/MultiPageController/CGRectExtensions.swif.swift; sourceTree = "<group>"; };
 		4CC6D6611DF140E3006F18FF /* MultiPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPageController.swift; path = ../LZChat/MultiPageController/MultiPageController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				4CDBF1011DE5EB480010D251 /* Group.swift */,
+				4C71F0011E064B0C004D6BA6 /* LZUser.swift */,
 				4C547F3A1DE758A100A434CB /* Message.swift */,
 				4C72D53B1DE8D68300B9F685 /* PushNotification.swift */,
 			);
@@ -421,6 +424,7 @@
 				210302611DEACBA700DDBB2D /* MovieViewController.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				4C39CD5B1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift in Sources */,
+				4C71F0021E064B0C004D6BA6 /* LZUser.swift in Sources */,
 				4CDBF0FE1DE56A3B0010D251 /* UserGroupsViewController.swift in Sources */,
 				4C0076BE1DEA81AE00C8F767 /* PluginsViewController.swift in Sources */,
 				4C39CD611DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.swift in Sources */,

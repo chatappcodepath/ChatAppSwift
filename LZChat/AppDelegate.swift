@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRAuth.auth()?.signIn(with: credential){ [weak self] (user, err) in
             guard let strongSelf = self else { return }
             
+            FirebaseUtils.sharedInstance.addNewUser()
             let groupsVC = UserGroupsViewController()
             let nvc = UINavigationController(rootViewController: groupsVC)
             nvc.navigationBar.isTranslucent = false
@@ -92,6 +93,7 @@ extension AppDelegate: GIDSignInDelegate {
     }
     
     func signOut() {
+        FirebaseUtils.sharedInstance.removeCurrentUser()
         try! FIRAuth.auth()?.signOut()
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
@@ -123,9 +125,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     }
     
     func tokenRefreshNotification(_ notification: Notification) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
-            print("InstanceID token: \(refreshedToken)")
-            print("Token is refreshed add it to your DB")
+        if let _ = FIRInstanceID.instanceID().token() {
+            FirebaseUtils.sharedInstance.addNewUser()
         }
     }
     

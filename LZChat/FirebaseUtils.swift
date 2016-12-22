@@ -54,6 +54,22 @@ class FirebaseUtils: NSObject {
         })
     }
     
+    public func addNewUser() {
+        let lzUser = LZUser(withFIRUser: authUser)
+        let ref = FIRDatabase.database().reference()
+        if let uid = lzUser.id , let refreshToken = FIRInstanceID.instanceID().token() {
+            ref.child("users").child(uid).setValue(lzUser.dictionary)
+            ref.child("pushTokens").child(uid).child(refreshToken).setValue("iOS")
+        }
+    }
+    
+    public func removeCurrentUser() {
+        let ref = FIRDatabase.database().reference()
+        if let uid = authUser?.uid, let refreshToken = FIRInstanceID.instanceID().token() {
+            ref.child("pushTokens").child(uid).child(refreshToken).removeValue()
+        }
+    }
+    
     public func groupMessageRefForGroup(group: Group) -> FIRDatabaseReference {
         let ref = FIRDatabase.database().reference()
         return ref.child(DBPaths.MESSAGES_FOR_GROUP.rawValue).child(group.id!)
