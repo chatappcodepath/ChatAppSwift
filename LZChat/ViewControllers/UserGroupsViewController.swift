@@ -80,4 +80,8 @@ extension UserGroupsViewController: UITableViewDelegate {
         navigationController?.pushViewController(groupMessagesVC, animated: true)
         // Touched row at indexpath
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return GroupsTableViewCell.cellHeight
+    }
 }

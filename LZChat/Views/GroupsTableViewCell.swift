@@ -9,18 +9,43 @@
 import UIKit
 
 class GroupsTableViewCell: UITableViewCell {
+    public static let cellHeight:CGFloat = 120
     public static let reuseID = "GroupsTableViewCellReuseIdentifier"
     public var group: Group? {
         didSet {
-            self.groupTitle.text = group?.title
+            if let groupTitle = group?.title,
+               let currentUserName = FirebaseUtils.sharedInstance.authUser?.displayName {
+                var newTitle = groupTitle.replacingOccurrences(of: currentUserName, with: "")
+                if (newTitle == "") {
+                    newTitle = "Selfie Chat"
+                }
+                self.groupTitle.text = newTitle
+                
+                if let lastMessageSnippet = group?.lmSnippet {
+                    lastMessageSnippetLabel.text = lastMessageSnippet
+                }
+                if let lmTimeStamp = group?.ts {
+                    let lmDate = Date(timeIntervalSince1970: (lmTimeStamp/1000));
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MM-dd-yyyy"
+                    lastMessageTimeStampLabel.text = dateFormatter.string(from: lmDate)
+                }
+            } else {
+                self.groupTitle.text = ""
+            }
         }
     }
     
+    @IBOutlet weak var groupAvatarImageView: UIImageView!
     @IBOutlet weak var groupTitle: UILabel!
+    @IBOutlet weak var lastMessageSnippetLabel: UILabel!
+    @IBOutlet weak var lastMessageTimeStampLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        groupAvatarImageView.layer.cornerRadius = 50.0
+        groupAvatarImageView.backgroundColor = UIColor.blue
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -1,37 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupsTableViewCellReuseIdentifier" rowHeight="56" id="KGk-i7-Jjw" customClass="GroupsTableViewCell" customModule="LZChat" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupsTableViewCellReuseIdentifier" rowHeight="121" id="KGk-i7-Jjw" customClass="GroupsTableViewCell" customModule="LZChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="55"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Titile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7s-En-Akq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Group Titile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7s-En-Akq">
+                        <rect key="frame" x="115" y="13" width="143" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NwD-Bd-8o1">
+                        <rect key="frame" x="10" y="10" width="100" height="100.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="fQE-KD-L9D"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message with long long  and very long text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rt-s0-F02">
+                        <rect key="frame" x="115" y="38.5" width="200" height="36"/>
+                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DU-Tm-YLI">
+                        <rect key="frame" x="263" y="8" width="49" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="N7s-En-Akq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="8XJ-Gc-FVF"/>
-                    <constraint firstAttribute="trailing" secondItem="N7s-En-Akq" secondAttribute="trailing" constant="8" id="8f7-D7-5iY"/>
-                    <constraint firstAttribute="bottom" secondItem="N7s-En-Akq" secondAttribute="bottom" constant="8" id="pZz-Ll-oPT"/>
-                    <constraint firstItem="N7s-En-Akq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="xLe-gV-1vQ"/>
+                    <constraint firstAttribute="bottom" secondItem="NwD-Bd-8o1" secondAttribute="bottom" constant="10" id="3yD-Dt-e1F"/>
+                    <constraint firstAttribute="bottom" secondItem="1Rt-s0-F02" secondAttribute="bottom" priority="250" constant="5" id="8U5-2z-d7m"/>
+                    <constraint firstAttribute="trailing" secondItem="1Rt-s0-F02" secondAttribute="trailing" constant="5" id="Afh-a1-Xh0"/>
+                    <constraint firstItem="1Rt-s0-F02" firstAttribute="leading" secondItem="NwD-Bd-8o1" secondAttribute="trailing" constant="5" id="DEK-e9-7Lb"/>
+                    <constraint firstItem="0DU-Tm-YLI" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="IfC-Z8-bdi"/>
+                    <constraint firstItem="NwD-Bd-8o1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="JyH-q2-32O"/>
+                    <constraint firstItem="N7s-En-Akq" firstAttribute="leading" secondItem="NwD-Bd-8o1" secondAttribute="trailing" constant="5" id="MDr-Wc-IXv"/>
+                    <constraint firstItem="1Rt-s0-F02" firstAttribute="top" secondItem="N7s-En-Akq" secondAttribute="bottom" constant="5" id="WZj-4u-aer"/>
+                    <constraint firstItem="0DU-Tm-YLI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gyF-YM-WYk"/>
+                    <constraint firstItem="0DU-Tm-YLI" firstAttribute="leading" secondItem="N7s-En-Akq" secondAttribute="trailing" constant="5" id="hgu-pq-VFd"/>
+                    <constraint firstItem="NwD-Bd-8o1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="pFW-RI-RKa"/>
+                    <constraint firstItem="N7s-En-Akq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="w8y-NB-it4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="groupAvatarImageView" destination="NwD-Bd-8o1" id="eGH-Ew-sDl"/>
                 <outlet property="groupTitle" destination="N7s-En-Akq" id="Qz2-vf-S4y"/>
+                <outlet property="lastMessageSnippetLabel" destination="1Rt-s0-F02" id="0yr-bb-WRJ"/>
+                <outlet property="lastMessageTimeStampLabel" destination="0DU-Tm-YLI" id="7Eg-d2-cNf"/>
             </connections>
-            <point key="canvasLocation" x="-175" y="-58"/>
+            <point key="canvasLocation" x="-175" y="-36"/>
         </tableViewCell>
     </objects>
 </document>
