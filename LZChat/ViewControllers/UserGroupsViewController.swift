@@ -66,6 +66,22 @@ extension UserGroupsViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // make the call to get the image and then call the cell.updateImage
+        guard let cell = cell as? GroupsTableViewCell else {
+            return
+        }
+        cell.fetchImage()
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // cancel the operation.
+        guard let cell = cell as? GroupsTableViewCell else {
+            return
+        }
+        cell.cancelImageFetching()
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }

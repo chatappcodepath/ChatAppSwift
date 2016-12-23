@@ -28,6 +28,9 @@
 		4C6AF7691DF4893300753626 /* MoviePayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AF7681DF4893300753626 /* MoviePayload.swift */; };
 		4C71F0021E064B0C004D6BA6 /* LZUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71F0011E064B0C004D6BA6 /* LZUser.swift */; };
 		4C72D53C1DE8D68300B9F685 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72D53B1DE8D68300B9F685 /* PushNotification.swift */; };
+		4CB1EBBE1E0CFCA2006CCA2A /* ImageFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1EBBD1E0CFCA2006CCA2A /* ImageFetchOperation.swift */; };
+		4CB1EBC01E0D0028006CCA2A /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1EBBF1E0D0028006CCA2A /* ConcurrentOperation.swift */; };
+		4CB1EBC21E0D0802006CCA2A /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1EBC11E0D0802006CCA2A /* ImageProvider.swift */; };
 		4CC6D6631DF140E3006F18FF /* CGRectExtensions.swif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */; };
 		4CC6D6641DF140E3006F18FF /* MultiPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6611DF140E3006F18FF /* MultiPageController.swift */; };
 		4CC6D6651DF140E3006F18FF /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6621DF140E3006F18FF /* ScrollView.swift */; };
@@ -76,6 +79,9 @@
 		4C6AF7681DF4893300753626 /* MoviePayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoviePayload.swift; path = ../LZChat/Plugins/MoviePayload.swift; sourceTree = "<group>"; };
 		4C71F0011E064B0C004D6BA6 /* LZUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LZUser.swift; path = Models/LZUser.swift; sourceTree = "<group>"; };
 		4C72D53B1DE8D68300B9F685 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushNotification.swift; path = ../LZChat/Models/PushNotification.swift; sourceTree = "<group>"; };
+		4CB1EBBD1E0CFCA2006CCA2A /* ImageFetchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageFetchOperation.swift; path = NetworkOperations/ImageFetchOperation.swift; sourceTree = "<group>"; };
+		4CB1EBBF1E0D0028006CCA2A /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConcurrentOperation.swift; path = NetworkOperations/ConcurrentOperation.swift; sourceTree = "<group>"; };
+		4CB1EBC11E0D0802006CCA2A /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageProvider.swift; path = NetworkOperations/ImageProvider.swift; sourceTree = "<group>"; };
 		4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGRectExtensions.swif.swift; path = ../LZChat/MultiPageController/CGRectExtensions.swif.swift; sourceTree = "<group>"; };
 		4CC6D6611DF140E3006F18FF /* MultiPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPageController.swift; path = ../LZChat/MultiPageController/MultiPageController.swift; sourceTree = "<group>"; };
 		4CC6D6621DF140E3006F18FF /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollView.swift; path = ../LZChat/MultiPageController/ScrollView.swift; sourceTree = "<group>"; };
@@ -115,6 +121,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CB1EBBC1E0CF743006CCA2A /* NetworkOperations */ = {
+			isa = PBXGroup;
+			children = (
+				4CB1EBBD1E0CFCA2006CCA2A /* ImageFetchOperation.swift */,
+				4CB1EBC11E0D0802006CCA2A /* ImageProvider.swift */,
+				4CB1EBBF1E0D0028006CCA2A /* ConcurrentOperation.swift */,
+			);
+			name = NetworkOperations;
+			sourceTree = "<group>";
+		};
 		4CC6D6591DF13031006F18FF /* MultiPageController */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +240,7 @@
 				2C8E6C2A1B16875B0073CE3D /* SignInViewController.swift */,
 				2CA807BD1B217B21009AD7F2 /* AppState.swift */,
 				2C595F041B34B73A00355AE7 /* Constants.swift */,
+				4CB1EBBC1E0CF743006CCA2A /* NetworkOperations */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
 			);
 			path = LZChat;
@@ -420,7 +437,10 @@
 				4CDBF1091DE731410010D251 /* GroupsTableViewCell.swift in Sources */,
 				4C547F3B1DE758A100A434CB /* Message.swift in Sources */,
 				2CA807BC1B21702E009AD7F2 /* MeasurementHelper.swift in Sources */,
+				4CB1EBC21E0D0802006CCA2A /* ImageProvider.swift in Sources */,
 				4CD407F91DF87E1B00B8283D /* AutoResponder.swift in Sources */,
+				4CB1EBBE1E0CFCA2006CCA2A /* ImageFetchOperation.swift in Sources */,
+				4CB1EBC01E0D0028006CCA2A /* ConcurrentOperation.swift in Sources */,
 				210302611DEACBA700DDBB2D /* MovieViewController.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				4C39CD5B1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.swift in Sources */,

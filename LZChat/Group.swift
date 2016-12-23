@@ -28,6 +28,19 @@ struct Group {
     var ts: Double?
     var usersImgs: [String:String]?
     
+    var groupImageURL : URL? {
+        var returnURL: URL? = nil
+        if let currentUser = FirebaseUtils.sharedInstance.authUser,
+            let usersImgs = usersImgs{
+            for (uid, imageURLString) in usersImgs {
+                if uid != currentUser.uid {
+                    returnURL = URL(string: imageURLString)
+                }
+            }
+        }
+        return returnURL
+    }
+    
     public init(snapshot: FIRDataSnapshot) {
         let groupDictionary = snapshot.value as! Dictionary<String, AnyObject>
         id = groupDictionary["id"] as? String
