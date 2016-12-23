@@ -25,6 +25,16 @@ class UserGroupsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "Hello \(FirebaseUtils.sharedInstance.authUser?.displayName ?? "user")"
+        FirebaseUtils.sharedInstance.groupsForCurrentUser {[weak self] (groups) in
+            guard let strongSelf = self else {return}
+            strongSelf.groups = groups
+            self?.groupsTable.reloadData()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,6 +54,12 @@ class UserGroupsViewController: UIViewController {
     func populateNavBar() {
         self.title = "Hello \(FirebaseUtils.sharedInstance.authUser?.displayName ?? "user")"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutCurrentUser))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Chat", style: .plain, target: self, action: #selector(startNewConversation))
+    }
+    
+    func startNewConversation() {
+        let userListVC = UserListViewController();
+        self.navigationController?.pushViewController(userListVC, animated: true)
     }
     
     func signOutCurrentUser() {
