@@ -83,13 +83,16 @@ extension UserGroupsViewController: UserListViewControllerDelegate {
                     return
                 }
             }
-            createNewGroupAndDisplay(uids: [selectedUserID, currentUserID])
+            
+            let currentUser = LZUser(withFIRUser: FirebaseUtils.sharedInstance.authUser)
+            createNewGroupAndDisplay(users: [selectedUser, currentUser])
         }
     }
     
-    func createNewGroupAndDisplay(uids: [String]) {
+    func createNewGroupAndDisplay(users: [LZUser]) {
         // create a group with given uids...
-        print("KevinTodo create a new group with \(uids)")
+        let newGroup = FirebaseUtils.sharedInstance.createNewGroup(withUsers: users)
+        displayMessagesForGroup(newGroup, animated: false)
     }
 }
 

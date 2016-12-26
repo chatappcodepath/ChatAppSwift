@@ -98,6 +98,26 @@ class FirebaseUtils: NSObject {
         updateGroupAndNotifications(in: group, messageToSend: messageToSend)
     }
     
+    public func createNewGroup(withUsers users:[LZUser]) -> Group {
+        let groupRef = FIRDatabase.database().reference().child(DBPaths.GROUPS.rawValue)
+        let newGroupRef = groupRef.childByAutoId()
+        let newGroup = Group(withUsers: users, id: newGroupRef.key)
+        
+        newGroupRef.setValue(newGroup.dictionary)
+        
+        // add to GroupsForUSers
+        let groupsForUsersRef = FIRDatabase.database().reference().child(DBPaths.GROUPS_FOR_USER.rawValue)
+        
+        for user in users {
+            if let userID = user.id,
+               let gid = newGroup.id {
+                let userRefNode = groupsForUsersRef.child(userID).child(gid)
+                userRefNode.setValue(true)
+            }
+        }
+        return newGroup
+    }
+    
     public func sendMessage(in group: Group, messageToSend: Message) -> Void {
         let messageRef = groupMessageRefForGroup(group: group)
         let newChild = messageRef.childByAutoId()

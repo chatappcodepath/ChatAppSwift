@@ -26,6 +26,7 @@ struct Group {
     var lmSnippet: String?
     var title: String?
     var ts: Double?
+    var messageType: String?
     var usersImgs: [String:String]?
     
     var groupImageURL : URL? {
@@ -41,6 +42,18 @@ struct Group {
         return returnURL
     }
     
+    var dictionary: [String: Any] {
+        var dictionary: [String : Any]  = [String: Any]()
+        dictionary["id"] = id
+        dictionary["title"] = title
+        dictionary["lmSnippet"] = lmSnippet
+        dictionary["ts"] = ts
+        dictionary["messageType"] = messageType
+        dictionary["usersImgs"] = usersImgs
+        
+        return dictionary;
+    }
+    
     func containsOnlyUIDs(uids: [String]) -> Bool {
         let newArr = Array(uids)
         let arr = Array(usersImgs!.keys)
@@ -54,5 +67,35 @@ struct Group {
         title = groupDictionary["title"] as? String
         usersImgs = groupDictionary["usersImgs"] as? [String: String]
         ts = groupDictionary["ts"] as? Double
+    }
+    
+    public init(withUsers users:[LZUser], id: String) {
+        /* create a Group with "-KX8TNimUaHT7GtcRsyT" : {
+        "id" : "-KX8TNimUaHT7GtcRsyT",
+        "lmSnippet" : "fgh",
+        "messageType" : "Text",
+        "title" : "Harshit MaparaKevin Patel",
+        "ts" : 1479776013212,
+        "usersImgs" : {
+            "Pn4FeKRkdsO5OnWaKuHl5zIfPKm1" : "https://lh4.googleusercontent.com/-VJZWNREIAsU/AAAAAAAAAAI/AAAAAAAAAAA/AEMOYSBHFSjau-yhwcPi64ZghP8rRsLaHQ/s96-c/photo.jpg",
+            "AjVfqUA4a0UciE7RhKiFr8MTEr73" : "https://lh6.googleusercontent.com/-cxMARBNR46g/AAAAAAAAAAI/AAAAAAAAALw/YJIFmViOKwE/s96-c/photo.jpg"
+        }
+    }*/
+        self.id = id
+        self.title = "Say Something break the ice!!"
+        self.messageType = MessageType.Text.rawValue
+        self.ts = Date().timeIntervalSince1970 * 1000
+        var newTitle = "";
+        var newUsersImages = [String: String]()
+        
+        for user in users {
+            if let userName = user.name, let userID = user.id, let photoURL = user.photoUrl {
+                newTitle += userName
+                newUsersImages[userID] = photoURL
+            }
+        }
+        
+        self.title = newTitle
+        self.usersImgs = newUsersImages
     }
 }
