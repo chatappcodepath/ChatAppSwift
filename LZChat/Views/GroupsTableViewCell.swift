@@ -36,7 +36,7 @@ class GroupsTableViewCell: UITableViewCell {
             }
         }
     }
-    private var imageProvider: ImageProvider?;
+    private var imageProvider: ImageProvider?
     
     @IBOutlet weak var groupAvatarImageView: UIImageView!
     @IBOutlet weak var groupTitle: UILabel!

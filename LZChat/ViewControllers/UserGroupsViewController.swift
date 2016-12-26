@@ -58,7 +58,8 @@ class UserGroupsViewController: UIViewController {
     }
     
     func startNewConversation() {
-        let userListVC = UserListViewController();
+        let userListVC = UserListViewController()
+        userListVC.delegate = self
         self.navigationController?.pushViewController(userListVC, animated: true)
     }
     
@@ -68,6 +69,28 @@ class UserGroupsViewController: UIViewController {
         }
     }
 
+}
+
+extension UserGroupsViewController: UserListViewControllerDelegate {
+    func didSelectUser(_ selectedUser: LZUser) {
+        //selected User
+        _ = self.navigationController?.popToRootViewController(animated: false)
+        if let selectedUserID = selectedUser.id,
+            let currentUserID = FirebaseUtils.sharedInstance.authUser?.uid {
+            for group in groups {
+                if (group.containsOnlyUIDs(uids: [selectedUserID, currentUserID])) {
+                    displayMessagesForGroup(group, animated: false)
+                    return
+                }
+            }
+            createNewGroupAndDisplay(uids: [selectedUserID, currentUserID])
+        }
+    }
+    
+    func createNewGroupAndDisplay(uids: [String]) {
+        // create a group with given uids...
+        print("KevinTodo create a new group with \(uids)")
+    }
 }
 
 extension UserGroupsViewController: UITableViewDataSource {
@@ -107,10 +130,14 @@ extension UserGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedGroup = groups[indexPath.row];
+        displayMessagesForGroup(selectedGroup, animated: true)
+        // Touched row at indexpath
+    }
+    
+    func displayMessagesForGroup(_ selectedGroup: Group, animated: Bool) {
         let groupMessagesVC = GroupMessagesViewController()
         groupMessagesVC.group = selectedGroup
-        navigationController?.pushViewController(groupMessagesVC, animated: true)
-        // Touched row at indexpath
+        navigationController?.pushViewController(groupMessagesVC, animated: animated)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

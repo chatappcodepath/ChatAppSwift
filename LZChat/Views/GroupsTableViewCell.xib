@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Group Titile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7s-En-Akq">
-                        <rect key="frame" x="65" y="13" width="193" height="20.5"/>
+                        <rect key="frame" x="65" y="13" width="193" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,13 +32,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message with long long  and very long text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rt-s0-F02">
-                        <rect key="frame" x="65" y="38.5" width="250" height="36"/>
+                        <rect key="frame" x="65" y="39" width="250" height="36"/>
                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DU-Tm-YLI">
-                        <rect key="frame" x="263" y="8" width="49" height="13.5"/>
+                        <rect key="frame" x="263" y="8" width="49" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

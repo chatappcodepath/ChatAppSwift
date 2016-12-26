@@ -33,6 +33,8 @@
 		4CB1EBC21E0D0802006CCA2A /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1EBC11E0D0802006CCA2A /* ImageProvider.swift */; };
 		4CB1EBC51E0DCDB7006CCA2A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1EBC31E0DCDB7006CCA2A /* UserListViewController.swift */; };
 		4CB1EBC61E0DCDB7006CCA2A /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1EBC41E0DCDB7006CCA2A /* UserListViewController.xib */; };
+		4CB1EBC91E0DDC72006CCA2A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1EBC71E0DDC72006CCA2A /* UserTableViewCell.swift */; };
+		4CB1EBCA1E0DDC72006CCA2A /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1EBC81E0DDC72006CCA2A /* UserTableViewCell.xib */; };
 		4CC6D6631DF140E3006F18FF /* CGRectExtensions.swif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */; };
 		4CC6D6641DF140E3006F18FF /* MultiPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6611DF140E3006F18FF /* MultiPageController.swift */; };
 		4CC6D6651DF140E3006F18FF /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6D6621DF140E3006F18FF /* ScrollView.swift */; };
@@ -86,6 +88,8 @@
 		4CB1EBC11E0D0802006CCA2A /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageProvider.swift; path = NetworkOperations/ImageProvider.swift; sourceTree = "<group>"; };
 		4CB1EBC31E0DCDB7006CCA2A /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		4CB1EBC41E0DCDB7006CCA2A /* UserListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListViewController.xib; sourceTree = "<group>"; };
+		4CB1EBC71E0DDC72006CCA2A /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewCell.swift; path = Views/UserTableViewCell.swift; sourceTree = "<group>"; };
+		4CB1EBC81E0DDC72006CCA2A /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserTableViewCell.xib; path = Views/UserTableViewCell.xib; sourceTree = "<group>"; };
 		4CC6D6601DF140E3006F18FF /* CGRectExtensions.swif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGRectExtensions.swif.swift; path = ../LZChat/MultiPageController/CGRectExtensions.swif.swift; sourceTree = "<group>"; };
 		4CC6D6611DF140E3006F18FF /* MultiPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPageController.swift; path = ../LZChat/MultiPageController/MultiPageController.swift; sourceTree = "<group>"; };
 		4CC6D6621DF140E3006F18FF /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollView.swift; path = ../LZChat/MultiPageController/ScrollView.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 			children = (
 				210302631DEACBC400DDBB2D /* MovieCollectionCell.swift */,
 				210302641DEACBC400DDBB2D /* MovieCollectionCell.xib */,
+				4CB1EBC71E0DDC72006CCA2A /* UserTableViewCell.swift */,
+				4CB1EBC81E0DDC72006CCA2A /* UserTableViewCell.xib */,
 				4CDBF1071DE731410010D251 /* GroupsTableViewCell.swift */,
 				4CDBF1081DE731410010D251 /* GroupsTableViewCell.xib */,
 			);
@@ -356,6 +362,7 @@
 				4CD407FB1DF87F9200B8283D /* eliza-min.js in Resources */,
 				4C39CD5C1DF4CA2400473AA0 /* MovieMessageCollectionViewCell.xib in Resources */,
 				4CDBF0FA1DE55CDF0010D251 /* LoginViewController.xib in Resources */,
+				4CB1EBCA1E0DDC72006CCA2A /* UserTableViewCell.xib in Resources */,
 				4C0076BF1DEA81AE00C8F767 /* PluginsViewController.xib in Resources */,
 				4CDBF10A1DE731410010D251 /* GroupsTableViewCell.xib in Resources */,
 				4C39CD621DF53D0C00473AA0 /* TicTacToeMessageCollectionViewCell.xib in Resources */,
@@ -437,6 +444,7 @@
 				4C6AF7691DF4893300753626 /* MoviePayload.swift in Sources */,
 				4C66E48E1DF713EB00F66B38 /* SendMessageProtocol.swift in Sources */,
 				4CDBF10D1DE73C010010D251 /* GroupMessagesViewController.swift in Sources */,
+				4CB1EBC91E0DDC72006CCA2A /* UserTableViewCell.swift in Sources */,
 				4C39CD5E1DF52EBB00473AA0 /* TicTacToePayload.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				4CDBF1051DE5F19C0010D251 /* FirebaseUtils.swift in Sources */,

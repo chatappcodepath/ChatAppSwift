@@ -41,6 +41,12 @@ struct Group {
         return returnURL
     }
     
+    func containsOnlyUIDs(uids: [String]) -> Bool {
+        let newArr = Array(uids)
+        let arr = Array(usersImgs!.keys)
+        return (arr.sorted().joined() == newArr.sorted().joined())
+    }
+    
     public init(snapshot: FIRDataSnapshot) {
         let groupDictionary = snapshot.value as! Dictionary<String, AnyObject>
         id = groupDictionary["id"] as? String

@@ -7,16 +7,13 @@
 //
 //  Sample
 /*
- {
- "id" : "-KWYv_n0af9nONROrfou",
- "lmSnippet" : "how to do",
- "title" : "Kevin PatelYqa phonereg",
- "ts" : 1479784792596,
- "usersImgs" : {
- "8j0804sBAXOnaW0AYI6vPRpfSaI2" : "https://lh4.googleusercontent.com/-6v5FaHf_KOc/AAAAAAAAAAI/AAAAAAAAAAA/AKTaeK8xIk_DrmSpOgbk-P7pCYgGsbZHow/s96-c/photo.jpg",
- "pvJwcq9LJ0Ww90Zab0Q081uBfdp1" : "https://lh6.googleusercontent.com/-cxMARBNR46g/AAAAAAAAAAI/AAAAAAAAALw/YJIFmViOKwE/s96-c/photo.jpg"
+ "kI9OZDu4SFRktlrZu6LJZrfvXOv1" : {
+ "email" : "yqaphonereg01@gmail.com",
+ "id" : "kI9OZDu4SFRktlrZu6LJZrfvXOv1",
+ "name" : "Yqa phonereg",
+ "photoUrl" : "https://lh4.googleusercontent.com/-6v5FaHf_KOc/AAAAAAAAAAI/AAAAAAAAAAA/AKTaeK8xIk_DrmSpOgbk-P7pCYgGsbZHow/s96-c/photo.jpg"
  }
- }*/
+ */
 
 import Foundation
 import FirebaseDatabase
@@ -37,13 +34,37 @@ struct LZUser {
         }
     }
     
+    public static func users(withSnapShot snapShot:FIRDataSnapshot) -> [LZUser] {
+        var retUsers = [LZUser]()
+        if let usersDict = snapShot.value as? [String: Any] {
+            for dictionary in usersDict.values {
+                if let dictionary = dictionary as? [String: Any] {
+                    retUsers.append(LZUser(withDictionary: dictionary))
+                }
+            }
+        }
+        return retUsers
+    }
+    
+    public init(withDictionary dictionary:[String: Any]) {
+        self.dictionary = dictionary
+    }
+    
     var dictionary: [String: Any] {
-        var dictionary: [String : Any]  = [String: Any]()
-        dictionary["email"] = email
-        dictionary["id"] = id
-        dictionary["name"] = name
-        dictionary["photoUrl"] = photoUrl
-        
-        return dictionary;
+        get {
+            var dictionary: [String : Any]  = [String: Any]()
+            dictionary["email"] = email
+            dictionary["id"] = id
+            dictionary["name"] = name
+            dictionary["photoUrl"] = photoUrl
+            
+            return dictionary;
+        }
+        set {
+            self.email = newValue["email"] as? String
+            self.id = newValue["id"] as? String
+            self.name = newValue["name"] as? String
+            self.photoUrl = newValue["photoUrl"] as? String
+        }
     }
 }

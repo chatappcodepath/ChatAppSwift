@@ -54,6 +54,18 @@ class FirebaseUtils: NSObject {
         })
     }
     
+    public func listAllUsers(completion:@escaping (([LZUser]) -> Void)) {
+        
+        let ref = FIRDatabase.database().reference()
+        let childRef = ref.child(DBPaths.USERS.rawValue)
+        
+        childRef.observeSingleEvent(of: .value, with:{ (usersSnapShot) in
+            // got the usersSnapShot
+            let users = LZUser.users(withSnapShot: usersSnapShot)
+            completion(users)
+        })
+    }
+    
     public func addNewUser() {
         let lzUser = LZUser(withFIRUser: authUser)
         let ref = FIRDatabase.database().reference()
