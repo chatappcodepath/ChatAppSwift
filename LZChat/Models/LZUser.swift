@@ -68,3 +68,16 @@ struct LZUser {
         }
     }
 }
+
+extension LZUser: Equatable {
+    public static func ==(lhs: LZUser, rhs: LZUser) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+
+
+
+
+
+

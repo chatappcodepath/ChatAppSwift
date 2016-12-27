@@ -19,7 +19,23 @@ protocol UserListViewControllerDelegate {
 class UserListViewController: UIViewController {
 
     @IBOutlet weak var userListTableView: UITableView!
-    var userList = [LZUser]()
+    @IBOutlet weak var searchBar: UISearchBar!
+    var userList:[LZUser]? {
+        didSet {
+            filteredUsers = userList
+        }
+    }
+    var filteredUsers:[LZUser]? {
+        didSet {
+            if let old = oldValue,
+                let filtered = filteredUsers {
+                if (old == filtered) {
+                    return
+                }
+            }
+            userListTableView.reloadData()
+        }
+    }
     var delegate:UserListViewControllerDelegate?
         
     override func viewDidLoad() {
@@ -28,26 +44,46 @@ class UserListViewController: UIViewController {
         bindViews()
         fetchDataSource()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func bindViews() {
         self.userListTableView.register(UINib(nibName: UserTableViewCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: UserTableViewCell.reuseID)
         self.userListTableView.dataSource = self
         self.userListTableView.delegate = self
+        self.searchBar.delegate = self
     }
 
     func fetchDataSource() {
-        FirebaseUtils.sharedInstance.listAllUsers { [weak self] (users) in
+        FirebaseUtils.sharedInstance.listAllUsers{ [weak self] (users) in
             guard let strongSelf = self else {return}
             strongSelf.userList = users
-            strongSelf.userListTableView.reloadData()
         }
+    }
+}
+
+extension UserListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText == "" {
+            filteredUsers = userList
+            return
+        }
+        
+        let newfilteredUsers = userList?.filter({ (user) -> Bool in
+            if let userName = user.name?.lowercased(),
+                let userEmail = user.email?.lowercased() {
+                let lowerCaseSearchTerm = searchText.lowercased()
+                let retVal = userName.contains(lowerCaseSearchTerm) || userEmail.contains(lowerCaseSearchTerm)
+                return retVal
+            }
+            return false
+        })
+        
+        filteredUsers = newfilteredUsers
     }
 }
 
@@ -57,12 +93,15 @@ extension UserListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userList.count
+        guard let filteredUsers = filteredUsers else {
+            return 0
+        }
+        return filteredUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.reuseID) as! UserTableViewCell
-        userCell.displayUser = userList[indexPath.row]
+        userCell.displayUser = filteredUsers![indexPath.row]
         return userCell
     }
 }
@@ -86,7 +125,7 @@ extension UserListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let selectedUser = userList[indexPath.row]
+        let selectedUser = filteredUsers![indexPath.row]
         self.delegate?.didSelectUser(selectedUser)
     }
 }

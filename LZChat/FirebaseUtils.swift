@@ -17,7 +17,8 @@ class FirebaseUtils: NSObject {
         MESSAGES_FOR_GROUP = "messagesForGroup",
         PUSHTOKEN = "pushTokens",
         NOTIFICATION_REQUEST_NODE = "notificationRequests",
-        USERS = "users"
+        USERS = "users",
+        USERSNAME = "name"
     }
     
     static let sharedInstance = FirebaseUtils()
