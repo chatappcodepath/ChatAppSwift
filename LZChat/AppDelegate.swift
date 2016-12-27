@@ -24,6 +24,7 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var loginVC: LoginViewController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -34,14 +35,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerForNotifications(application: application)
         
-        GIDSignIn.sharedInstance().signInSilently()
-        
         if let currentUser = GIDSignIn.sharedInstance().currentUser {
             signInWithCurrentUser(user: currentUser)
         } else {
-            window?.rootViewController = LoginViewController();
+            loginVC = LoginViewController()
+            window?.rootViewController = loginVC
             window?.makeKeyAndVisible()
         }
+        
+        GIDSignIn.sharedInstance().signInSilently()
+        
         return true
     }
     
@@ -73,6 +76,9 @@ extension AppDelegate: GIDSignInDelegate {
         // Perform any operations when the user disconnects from app here.
         if let error = error {
             print("Error in Google Signin " + error.localizedDescription);
+            if let loginVC = self.loginVC {
+                loginVC.hideSignInButton = false
+            }
             return
         }
         signInWithCurrentUser(user: user)
@@ -98,7 +104,9 @@ extension AppDelegate: GIDSignInDelegate {
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
         AppState.sharedInstance.signedIn = false
-        window?.rootViewController = LoginViewController()
+        self.loginVC = LoginViewController();
+        self.loginVC?.hideSignInButton = false
+        window?.rootViewController = self.loginVC
     }
     
 }
