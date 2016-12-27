@@ -14,6 +14,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        googleSigninButton.layer.cornerRadius = 20.0
+        googleSigninButton.clipsToBounds = true
         GIDSignIn.sharedInstance().uiDelegate = self
         // Do any additional setup after loading the view.
     }
