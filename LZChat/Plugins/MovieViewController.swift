@@ -9,14 +9,31 @@
 import UIKit
 import AFNetworking
 
-class MovieViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MovieViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var movieCollectionView: UICollectionView!
     var movies: [MoviePayload]?
     var sendMessageDelegate : SendMessageProtocol?
     
+    static let interCellSpacing:CGFloat = 9
+    
+    var sizeForItem:CGSize {
+        let containerWidth = self.movieCollectionView.bounds.width
+        let maxItems = floor(containerWidth / 110)
+        let itemWidth = floor((containerWidth - (maxItems - 1)*MovieViewController.interCellSpacing) / maxItems)
+        let itemHeight = itemWidth * 1.33
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.itemSize = self.sizeForItem
+        flowLayout.minimumInteritemSpacing = MovieViewController.interCellSpacing
+        
+        movieCollectionView.collectionViewLayout = flowLayout
         
         movieCollectionView.dataSource = self
         movieCollectionView.delegate = self
@@ -39,6 +56,10 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return sizeForItem
+    }
+    
     // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -54,6 +75,7 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
             sendMessageDelegate?.sendMessage(newMessage)
         }
     }
+    
 
     func performNetworkRequest() {
         //TODO MOVE to client file
