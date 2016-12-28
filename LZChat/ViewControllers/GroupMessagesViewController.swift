@@ -23,11 +23,12 @@ class GroupMessagesViewController: JSQMessagesViewController {
             var auxViewHeight:CGFloat = 0;
             if (showingAccessoryView)! {
                 auxViewHeight = 250;
-                pluginsViewController = PluginsViewController(nibName: "PluginsViewController", bundle: Bundle.main, sendMessageDelegate: self)
-                self.addChildViewController(pluginsViewController!)
-                self.view.addSubview((pluginsViewController?.view)!)
-                pluginsViewController?.view.frame = CGRect(x: 0, y: self.view.frame.height - auxViewHeight, width: self.view.frame.width, height: auxViewHeight)
-                
+                if (oldValue != showingAccessoryView) {
+                    pluginsViewController = PluginsViewController(nibName: "PluginsViewController", bundle: Bundle.main, sendMessageDelegate: self)
+                    self.addChildViewController(pluginsViewController!)
+                    self.view.addSubview((pluginsViewController?.view)!)
+                    pluginsViewController?.view.frame = CGRect(x: 0, y: self.view.frame.height - auxViewHeight, width: self.view.frame.width, height: auxViewHeight)
+                }
             } else {
                 pluginsViewController?.removeFromParentViewController()
                 self.pluginsViewController?.view?.removeFromSuperview()
@@ -127,7 +128,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         setupFirebase()
         registerNibsForSpecialCells()
         showingAccessoryView = false
-        addLongTapGRForLeftButton()
+        bindViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -164,8 +165,8 @@ class GroupMessagesViewController: JSQMessagesViewController {
     }
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
-        print("Camera pressed!")
         showingAccessoryView = !showingAccessoryView!
+        self.inputToolbar.contentView.textView.endEditing(true)
     }
     
     func finishReceivingNewMessage(_ newMessage: Message) {
@@ -191,11 +192,17 @@ extension GroupMessagesViewController: SendMessageProtocol {
 // for Plugins
 extension GroupMessagesViewController {
     
-    func addLongTapGRForLeftButton() {
+    func bindViews() {
         let longTapGR = UILongPressGestureRecognizer(target: self, action: #selector(toggleAutoMode(sender:)))
         self.inputToolbar.contentView.leftBarButtonItem.addGestureRecognizer(longTapGR)
+        let collectionViewTapGR = UITapGestureRecognizer(target: self, action: #selector(dimissKeyboardAndPlugins(sender:)))
+        self.collectionView.addGestureRecognizer(collectionViewTapGR)
     }
     
+    func dimissKeyboardAndPlugins(sender : UITapGestureRecognizer) {
+        self.showingAccessoryView = false
+        self.inputToolbar.contentView.textView.endEditing(true)
+    }
     
     func registerNibsForSpecialCells() -> Void{
         collectionView.register(UINib(nibName: MovieMessageCollectionViewCell.xibFileName, bundle: Bundle.main), forCellWithReuseIdentifier: MovieMessageCollectionViewCell.cellReuseIdentifier)
@@ -234,6 +241,20 @@ extension GroupMessagesViewController {
         let topSpacing = heightForMessageBubbleTopLabelAt(indexPath: indexPath)
         
         cell.configureCellWith(avatarDataSource: avatarDataSource, bubbleImageDataSource: bubbleDataSource, isIncomingMessage: isIncomingMessage, topSpacing: topSpacing)
+    }
+    
+    override func textViewDidBeginEditing(_ textView: UITextView) {
+        showingAccessoryView = false
+    }
+    
+    override func textViewDidEndEditing(_ textView: UITextView) {
+        if (showingAccessoryView!) {
+            let deadline = DispatchTime.now() + DispatchTimeInterval.milliseconds(500)
+            
+            DispatchQueue.main.asyncAfter(deadline: deadline, execute: {
+                self.showingAccessoryView = true
+            })
+        }
     }
 }
 
