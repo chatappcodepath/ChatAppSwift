@@ -133,7 +133,7 @@ class FirebaseUtils: NSObject {
 
         let groupReference = ref.child(DBPaths.GROUPS.rawValue).child(group.id!)
         let notificationReference = ref.child(DBPaths.NOTIFICATION_REQUEST_NODE.rawValue)
-        groupReference.child("lmSnippet").setValue(messageToSend.payLoad);
+        groupReference.child("lmSnippet").setValue(messageToSend.snippet);
         groupReference.child("ts").setValue(messageToSend.tsMilliSec);
         groupReference.child("messageType").setValue(messageToSend.msgType?.rawValue);
         notificationReference.childByAutoId().setValue(PushNotification.newPushNotificationFrom(message: messageToSend, group: group).pushNotifDictionary)

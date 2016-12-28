@@ -61,6 +61,10 @@ struct MoviePayload {
         return nil
     }
     
+    var snippet: String? {
+        return self.title
+    }
+    
     var payload:String? {
         guard let payloadDictionary = dictionary else {
             return nil

@@ -22,6 +22,12 @@ import Foundation
 enum MoveType:String {
     case cross
     case o
+    var displayString: String {
+        if self == .cross {
+            return "X"
+        }
+        return "O"
+    }
 }
 
 enum TileState: String {
@@ -92,6 +98,15 @@ struct TicTacToePayload {
     private var oSids: Set<String>
     private(set) var currentTileStates: [TileState]
     static var newGamePayload = "[]"
+    var snippet: String? {
+        if let moves = moves {
+            return "TicTacToe: " + moves.map({ (move) -> String in
+                return "\(move.move!.displayString):\(move.position!)"
+            }).joined(separator: ", ")
+        }
+        
+        return "TicTacToe"
+    }
     
     init(jsonPayload:String) {
         moves = [Move]()
@@ -201,6 +216,8 @@ struct TicTacToePayload {
         return .Lose
     }
     
+    
+    
     var jsonPayload:String {
         var movesDictionary = [[String: Any]]()
 
@@ -264,30 +281,3 @@ struct TicTacToePayload {
         return jsonPayload
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

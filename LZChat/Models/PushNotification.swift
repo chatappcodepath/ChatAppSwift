@@ -18,7 +18,7 @@ class PushNotification: NSObject {
         let pushNotif = PushNotification()
         
         pushNotif.groupID = group.id
-        pushNotif.payload = message.payLoad
+        pushNotif.payload = message.snippet
         pushNotif.senderID = message.sid
         pushNotif.title = message.name
         

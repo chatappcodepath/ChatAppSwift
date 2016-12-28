@@ -41,7 +41,17 @@ enum MessageType: String {
             return payload
         }
     }
-}
+    static func snippetFor(payload: String, messageType: MessageType) -> String {
+        switch messageType {
+        case .Movie:
+            return MoviePayload(jsonPayload: payload).snippet ?? "Movie"
+        case .TicTacToe:
+            return TicTacToePayload(jsonPayload: payload).snippet ?? "TicTacToe"
+        default:
+            return payload
+        }
+    }
+ }
 
 class Message: NSObject {
     var isBotMessage : Bool?
@@ -49,6 +59,13 @@ class Message: NSObject {
     var name : String?
     var mid : String?
     var payLoad : String?
+    var snippet : String? {
+        if let payload = self.payLoad,
+            let messageType = self.msgType {
+            return MessageType.snippetFor(payload: payload, messageType: messageType)
+        }
+        return nil
+    }
     var photoUrl : String?
     var sid : String?
     var ts: TimeInterval?
