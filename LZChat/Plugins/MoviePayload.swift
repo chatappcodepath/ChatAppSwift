@@ -89,7 +89,6 @@ struct MoviePayload {
         overview = dictionary["overview"] as? String
         poster_path = dictionary["poster_path"] as? String
         title = dictionary["title"] as? String
-        trailerURL = "HSzx-zryEgM"
         vote_average = "\(dictionary["vote_average"] as! Int)"
     }
     

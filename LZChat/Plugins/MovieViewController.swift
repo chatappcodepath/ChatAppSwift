@@ -11,6 +11,7 @@ import AFNetworking
 
 class MovieViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
+    static let TMDB_API_KEY = "" // USE your TMDB API Key
     @IBOutlet weak var movieCollectionView: UICollectionView!
     var movies: [MoviePayload]?
     var sendMessageDelegate : SendMessageProtocol?
@@ -23,6 +24,24 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
         let itemWidth = floor((containerWidth - (maxItems - 1)*MovieViewController.interCellSpacing) / maxItems)
         let itemHeight = itemWidth * 1.33
         return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    var _urlSession: URLSession?
+    var urlSession: URLSession {
+        if let session = _urlSession {
+            return session;
+        }
+        
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 1.0
+        
+        _urlSession = URLSession(
+            configuration: sessionConfig,
+            delegate:nil,
+            delegateQueue:OperationQueue.main
+        )
+        
+        return _urlSession!;
     }
     
     override func viewDidLoad() {
@@ -39,7 +58,7 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
         movieCollectionView.delegate = self
         self.movieCollectionView.register(UINib(nibName: "MovieCollectionCell", bundle: Bundle.main), forCellWithReuseIdentifier: MovieCollectionCell.reuseID)
 
-        performNetworkRequest()
+        fetchAllMovies()
         // Do any additional setup after loading the view.
     }
 
@@ -70,28 +89,55 @@ class MovieViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let moviePayload = movies?[indexPath.row].payload {
-            let newMessage = Message.newMessageWith(payload: moviePayload, messageType: .Movie)
+        if let movie = movies?[indexPath.row] {
+            fetchTrailerAndSendMessageForMovie(movie)
+        }
+    }
+    
+    func fetchTrailerAndSendMessageForMovie(_ movie:MoviePayload) {
+        if let _ = movie.trailerURL {
+            sendMessageForMovie(movie)
+        }
+        var movieToSend = movie
+        let url = URL(string:"https://api.themoviedb.org/3/movie/\(movie.id!)/videos?api_key=\(MovieViewController.TMDB_API_KEY)")
+        let request = URLRequest(url: url!)
+        let task = urlSession.dataTask(with: request, completionHandler:{ [weak self] (dataOrNil, response, error) in
+            guard let strongSelf = self else {return}
+            
+            if ((error) != nil) {
+                print("There was a network error")
+                return
+            }
+            
+            if let data = dataOrNil {
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let jsonArray = responseDictionary["results"] as? [[String: Any]] {
+                        if let trailerURL = jsonArray.first!["key"] as? String {
+                            movieToSend.trailerURL = trailerURL
+                            strongSelf.sendMessageForMovie(movieToSend)
+                        }
+                    }
+                }
+            } else {
+                print("There was an error")
+            }
+        })
+        task.resume()
+    }
+    
+    func sendMessageForMovie(_ movie:MoviePayload) {
+        if let payload = movie.payload {
+            let newMessage = Message.newMessageWith(payload: payload, messageType: .Movie)
             sendMessageDelegate?.sendMessage(newMessage)
         }
     }
     
-
-    func performNetworkRequest() {
+    func fetchAllMovies() {
         //TODO MOVE to client file
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(MovieViewController.TMDB_API_KEY)")
         let request = URLRequest(url: url!)
-        let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 1.0
         
-        let session = URLSession(
-            configuration: sessionConfig,
-            delegate:nil,
-            delegateQueue:OperationQueue.main
-        )
-        
-        let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: {[weak self] (dataOrNil, response, error) in
+        let task : URLSessionDataTask = urlSession.dataTask(with: request,completionHandler: {[weak self] (dataOrNil, response, error) in
             
             guard let strongSelf = self else {return}
             

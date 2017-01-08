@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oKx-1Q-s5t">
-                    <rect key="frame" x="10" y="10" width="355" height="647"/>
+                    <rect key="frame" x="10" y="10" width="355" height="617"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zjn-rZ-Cmk">
                         <size key="itemSize" width="110" height="147"/>
@@ -30,15 +30,37 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This product uses the TMDb API but is not endorsed or certified by TMDb." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeS-eX-6jI">
+                    <rect key="frame" x="58" y="627" width="307" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tmdb_logo" translatesAutoresizingMaskIntoConstraints="NO" id="5uG-hi-uNd">
+                    <rect key="frame" x="10" y="627" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Hem-Fg-cjP"/>
+                        <constraint firstAttribute="height" constant="40" id="t4d-AL-bhk"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="5uG-hi-uNd" firstAttribute="top" secondItem="oKx-1Q-s5t" secondAttribute="bottom" id="4iJ-aL-SVO"/>
                 <constraint firstAttribute="trailing" secondItem="oKx-1Q-s5t" secondAttribute="trailing" constant="10" id="BTF-Lm-vUj"/>
                 <constraint firstItem="oKx-1Q-s5t" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="G4P-El-RDF"/>
-                <constraint firstAttribute="bottom" secondItem="oKx-1Q-s5t" secondAttribute="bottom" constant="10" id="XCV-zt-NAk"/>
+                <constraint firstItem="5uG-hi-uNd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="IKs-fD-EcW"/>
+                <constraint firstItem="WeS-eX-6jI" firstAttribute="top" secondItem="oKx-1Q-s5t" secondAttribute="bottom" id="L75-17-KY2"/>
+                <constraint firstAttribute="bottom" secondItem="WeS-eX-6jI" secondAttribute="bottom" id="NgD-Sa-3O7"/>
                 <constraint firstItem="oKx-1Q-s5t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="ZZg-bu-DA6"/>
+                <constraint firstAttribute="bottom" secondItem="5uG-hi-uNd" secondAttribute="bottom" id="qdS-UU-IhW"/>
+                <constraint firstItem="WeS-eX-6jI" firstAttribute="leading" secondItem="5uG-hi-uNd" secondAttribute="trailing" constant="8" id="skp-jj-kTT"/>
+                <constraint firstAttribute="trailing" secondItem="WeS-eX-6jI" secondAttribute="trailing" constant="10" id="utf-Yp-bQi"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="tmdb_logo" width="182" height="162"/>
+    </resources>
 </document>
