@@ -76,8 +76,9 @@ class UserGroupsViewController: UIViewController {
     
     func populateNavBar() {
         self.title = "Hello \(FirebaseUtils.sharedInstance.authUser?.displayName ?? "user")"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutCurrentUser))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Chat", style: .plain, target: self, action: #selector(startNewConversation))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(signOutCurrentUser))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "newChat"), style: .plain, target: self, action: #selector(startNewConversation))
     }
     
     func startNewConversation() {
