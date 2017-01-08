@@ -21,13 +21,12 @@ class GroupsTableViewCell: UITableViewCell {
                 }
                 self.groupTitle.text = newTitle
                 
-                
                 lastMessageSnippetLabel.text = group?.lmSnippet
                
                 if let lmTimeStamp = group?.ts {
                     let lmDate = Date(timeIntervalSince1970: (lmTimeStamp/1000));
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "MM-dd-yyyy"
+                    dateFormatter.dateFormat = "E MMM dd, yyyy"
                     lastMessageTimeStampLabel.text = dateFormatter.string(from: lmDate)
                 }
                 updateImageViewWithImage(image: nil)

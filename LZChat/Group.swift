@@ -32,8 +32,11 @@ struct Group {
     var groupImageURL : URL? {
         var returnURL: URL? = nil
         if let currentUser = FirebaseUtils.sharedInstance.authUser,
-            let usersImgs = usersImgs{
+            let usersImgs = usersImgs {
             for (uid, imageURLString) in usersImgs {
+                if returnURL == nil {
+                    returnURL = URL(string: imageURLString) // fixing for selfie chat
+                }
                 if uid != currentUser.uid {
                     returnURL = URL(string: imageURLString)
                 }

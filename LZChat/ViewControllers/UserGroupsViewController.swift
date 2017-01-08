@@ -15,7 +15,32 @@ import Firebase
 class UserGroupsViewController: UIViewController {
 
     @IBOutlet weak var groupsTable: UITableView!
-    var groups = [Group]()
+    var _groups = [Group]()
+    var groups: [Group] {
+        get {
+            return _groups
+        }
+        set {
+            
+            let oldGids = _groups.map { (group) -> String in
+                return "\(group.id!):\(group.ts!)"
+            }
+            
+            _groups = newValue.sorted(by: { (group1, group2) -> Bool in
+                return group1.ts! > group2.ts!
+            })
+            
+            let newGids = _groups.map { (group) -> String in
+                return "\(group.id!):\(group.ts!)"
+            }
+            
+            if (oldGids.joined() == newGids.joined()) {
+                return
+            }
+            
+            self.groupsTable.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +56,6 @@ class UserGroupsViewController: UIViewController {
         FirebaseUtils.sharedInstance.groupsForCurrentUser {[weak self] (groups) in
             guard let strongSelf = self else {return}
             strongSelf.groups = groups
-            self?.groupsTable.reloadData()
         }
     }
     
@@ -47,7 +71,6 @@ class UserGroupsViewController: UIViewController {
         FirebaseUtils.sharedInstance.groupsForCurrentUser {[weak self] (groups) in
             guard let strongSelf = self else {return}
             strongSelf.groups = groups
-            self?.groupsTable.reloadData()
         }
     }
     
