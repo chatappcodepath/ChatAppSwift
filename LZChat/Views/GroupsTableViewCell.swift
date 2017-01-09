@@ -13,13 +13,8 @@ class GroupsTableViewCell: UITableViewCell {
     public static let reuseID = "GroupsTableViewCellReuseIdentifier"
     public var group: Group? {
         didSet {
-            if let groupTitle = group?.title,
-               let currentUserName = FirebaseUtils.sharedInstance.authUser?.displayName {
-                var newTitle = groupTitle.replacingOccurrences(of: currentUserName, with: "")
-                if (newTitle == "") {
-                    newTitle = "Selfie Chat"
-                }
-                self.groupTitle.text = newTitle
+            if let displayTitle = group?.displayTitle {
+                self.groupTitle.text = displayTitle
                 
                 lastMessageSnippetLabel.text = group?.lmSnippet
                

@@ -29,6 +29,18 @@ struct Group {
     var messageType: String?
     var usersImgs: [String:String]?
     
+    var displayTitle:String? {
+        var newTitle:String? = nil
+        if let currentUserName = FirebaseUtils.sharedInstance.authUser?.displayName,
+            let title = self.title {
+            newTitle = title.replacingOccurrences(of: currentUserName, with: "")
+            if (newTitle == "") {
+                newTitle = "Selfie Chat"
+            }
+        }
+        return newTitle
+    }
+    
     var groupImageURL : URL? {
         var returnURL: URL? = nil
         if let currentUser = FirebaseUtils.sharedInstance.authUser,

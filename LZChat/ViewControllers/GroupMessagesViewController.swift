@@ -110,7 +110,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         super.viewDidLoad()
         //inputToolbar.contentView.leftBarButtonItem = nil
         automaticallyScrollsToMostRecentMessage = true
-        navigationController?.navigationBar.topItem?.title = "Chat Groups"
+        navigationController?.navigationBar.topItem?.title = "Back"
         
         sender = FirebaseUtils.sharedInstance.authUser
         senderId = sender.uid
@@ -128,6 +128,7 @@ class GroupMessagesViewController: JSQMessagesViewController {
         setupFirebase()
         registerNibsForSpecialCells()
         showingAccessoryView = false
+        populateNavBar()
         bindViews()
     }
     
@@ -141,6 +142,9 @@ class GroupMessagesViewController: JSQMessagesViewController {
         
     }
     
+    func populateNavBar() {
+        self.title = "\(group.displayTitle!)"
+    }
     
     // ACTIONS
     

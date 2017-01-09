@@ -15,12 +15,15 @@ import Firebase
 class UserGroupsViewController: UIViewController {
 
     @IBOutlet weak var groupsTable: UITableView!
+    @IBOutlet weak var newConvOnboarding: UIView!
     var _groups = [Group]()
     var groups: [Group] {
         get {
             return _groups
         }
         set {
+            
+            self.newConvOnboarding.isHidden = true
             
             let oldGids = _groups.map { (group) -> String in
                 return "\(group.id!):\(group.ts!)"

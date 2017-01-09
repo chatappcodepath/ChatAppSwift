@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserGroupsViewController" customModule="LZChat" customModuleProvider="target">
             <connections>
                 <outlet property="groupsTable" destination="3Um-JM-Z4F" id="Mxh-91-dPj"/>
+                <outlet property="newConvOnboarding" destination="GXu-LT-PNg" id="vFb-aY-YYT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,23 +21,45 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Um-JM-Z4F">
-                    <frame key="frameInset" minY="21" width="375" height="646"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Um-JM-Z4F">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXu-LT-PNg">
+                    <rect key="frame" x="10" y="0.0" width="355" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start a new conversation by tapping on the top right new conversation button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKM-uI-fw6">
+                            <rect key="frame" x="0.0" y="0.0" width="355" height="667"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="SKM-uI-fw6" firstAttribute="leading" secondItem="GXu-LT-PNg" secondAttribute="leading" id="8oU-9u-HIL"/>
+                        <constraint firstItem="SKM-uI-fw6" firstAttribute="top" secondItem="GXu-LT-PNg" secondAttribute="top" id="M3l-jG-gn4"/>
+                        <constraint firstAttribute="bottom" secondItem="SKM-uI-fw6" secondAttribute="bottom" id="aon-c1-1Ek"/>
+                        <constraint firstAttribute="trailing" secondItem="SKM-uI-fw6" secondAttribute="trailing" id="x9Y-s9-sge"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="3Um-JM-Z4F" secondAttribute="trailing" id="33U-R6-z7S"/>
-                <constraint firstAttribute="bottom" secondItem="3Um-JM-Z4F" secondAttribute="bottom" id="FfV-xq-kJG"/>
-                <constraint firstItem="3Um-JM-Z4F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ajc-Jy-yCn"/>
-                <constraint firstItem="3Um-JM-Z4F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iaB-SS-gNO"/>
+                <constraint firstItem="GXu-LT-PNg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Fvh-n2-38C"/>
+                <constraint firstAttribute="bottom" secondItem="GXu-LT-PNg" secondAttribute="bottom" id="KX4-4j-R1V"/>
+                <constraint firstItem="3Um-JM-Z4F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T3d-7y-FQ9"/>
+                <constraint firstAttribute="trailing" secondItem="3Um-JM-Z4F" secondAttribute="trailing" id="Vne-Q1-hnB"/>
+                <constraint firstAttribute="bottom" secondItem="3Um-JM-Z4F" secondAttribute="bottom" id="WqM-68-lzf"/>
+                <constraint firstItem="GXu-LT-PNg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZOb-Jr-n1d"/>
+                <constraint firstItem="3Um-JM-Z4F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hLr-Xr-28Y"/>
+                <constraint firstAttribute="trailing" secondItem="GXu-LT-PNg" secondAttribute="trailing" constant="10" id="ht6-NK-Z2P"/>
             </constraints>
-            <point key="canvasLocation" x="-300" y="47"/>
+            <point key="canvasLocation" x="-300.5" y="46.5"/>
         </view>
     </objects>
 </document>
