@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MultiPageController
 
 
 class PluginsViewController: MultiPageController {

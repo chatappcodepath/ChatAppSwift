@@ -1,7 +1,7 @@
 # LZChat
 
 use_frameworks!
-platform :ios, '7.0'
+platform :ios, '9.0'
 
 pod 'Firebase/Storage'
 pod 'Firebase/AdMob'
@@ -11,7 +11,8 @@ pod 'Firebase/Database'
 pod 'Firebase/Messaging'
 pod 'Firebase/RemoteConfig'
 pod 'GoogleSignIn'
-pod 'JSQMessagesViewController'
+pod 'MultiPageController'
+pod 'JSQMessagesViewController', :git => 'https://github.com/chatappcodepath/JSQMessagesViewController.git', :branch => 'master'
 pod 'AFNetworking', '~> 3.0'
 
 target 'LZChat' do
