@@ -1,10 +1,11 @@
 //
 //  FirebaseUtils.swift
-//  LZChat
 //
-//  Created by Kevin Balvantkumar Patel on 11/23/16.
-//  Copyright © 2016 Google Inc. All rights reserved.
+//  License
+//  Copyright (c) 2017 chatappcodepath
+//  Released under an MIT license: http://opensource.org/licenses/MIT
 //
+
 
 import Foundation
 import Firebase
